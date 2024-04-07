@@ -10,3 +10,7 @@ env:
 	cp .env.example .env
 generate: env
 	php artisan key:generate
+create-db:
+	docker run --name mysql -e MYSQL_ROOT_PASSWORD=12345678 -d mysql:latest
+db:
+	docker exec -it mysql mysql -u root -p
