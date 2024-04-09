@@ -1,10 +1,11 @@
-import logo from '../assets/logo.svg'
-import house from '../assets/house.svg'
-import books from '../assets/books.svg'
-import briefcase from '../assets/briefcase.svg'
-import mortarboard from '../assets/mortarboard.svg'
-import book from '../assets/book.svg'
-import chalkboard from '../assets/chalkboard.svg'
+import logo from './logo.svg'
+import house from './house.svg'
+import books from './books.svg'
+import briefcase from './briefcase.svg'
+import mortarboard from './mortarboard.svg'
+import book from './book.svg'
+import chalkboard from './chalkboard.svg'
+import user from './user.svg'
 
 export const AppIcons = {
   'logo': logo,
@@ -14,4 +15,5 @@ export const AppIcons = {
   'chalkboard': chalkboard,
   'house': house,
   'mortarboard': mortarboard,
+  'user': user,
 }
