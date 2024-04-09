@@ -17,7 +17,11 @@ export default {
       'gold': '#EAB308',
       'green': '#22C55E',
       'dark': '#000000',
-      'gray': '#F9F9F9',
+      'gray': {
+        '500': '#F9F9F9',
+        '700': '#969696',
+        '900': '#71717A',
+      },
       'white': '#FFFFFF',
     },
   },
