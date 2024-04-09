@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Sidebar } from "../components/Sidebar";
+import { Sidebar, User } from "../components";
 
 type PageProps = {
   showSidebar?: boolean
@@ -8,9 +8,12 @@ type PageProps = {
 
 export function Page({ children, showSidebar = true }: PageProps) {
   return (
-    <div className="flex h-screen p-4 bg-gray">
+    <div className="flex h-screen p-4 bg-gray-500">
       {showSidebar && <Sidebar />}
-      {children}
+      <div className="flex-1 mt-12">
+        <User data={{ name: 'User', period: '7º período' }} />
+        {children}
+      </div>
     </div>
   )
 }
