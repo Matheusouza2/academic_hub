@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('nome')->unique();
             $table->unsignedBigInteger('coordenador_id');
+            $table->integer('carga_horaria');
+            $table->string('sigla');
             $table->timestamps();
-
             $table->foreign('coordenador_id')->references('id')->on('professores');
         });
     }
+
 
     /**
      * Reverse the migrations.

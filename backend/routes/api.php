@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('v1/cadastrar', [AlunoController::class, 'store']);
 
-Route::post('/cursos', 'App\Http\Controllers\CursosController@store');
+Route::post('v1/cursos', 'App\Http\Controllers\CursosController@store');
