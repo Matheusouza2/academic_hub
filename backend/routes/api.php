@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('v1/cadastrar', [AlunoController::class, 'store']);
 
-Route::post('v1/cursos', 'App\Http\Controllers\CursosController@store');
+
+Route::prefix('v1')->group(function () {
+
+    Route::prefix('user')->group(function () {
+
+        Route::patch('/edit/{id}', [UsuarioController::class, 'update']);
+    });
+  
+  Route::prefix('cursos')->group(function(){
+      Route::post('store', [CursosController::class, 'store']);
+  });
+  
+});
+
