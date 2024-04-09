@@ -15,7 +15,6 @@ class Professor extends Model
         'nome',
         'siape',
         'sexo',
-        'endereco',
         'data_nascimento'
     ];
 }
