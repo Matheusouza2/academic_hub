@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('user')->group(function () {
 
-        Route::patch('/edit/{id}', [UsuarioController::class, 'update']);
+        Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
     });
   
   Route::prefix('cursos')->group(function(){
