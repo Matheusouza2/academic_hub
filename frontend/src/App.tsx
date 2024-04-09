@@ -1,11 +1,11 @@
-import { Sidebar } from "./components/Sidebar"
+import { Router } from "./Router"
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="bg-gray h-screen flex p-4">
-      <Sidebar type="student" />
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1> 
-    </div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   )
 }
 

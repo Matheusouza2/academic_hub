@@ -1,26 +1,27 @@
+import { Link } from "react-router-dom"
 import { AppIcons } from "../assets/exports"
 
 type SidebarProps = {
-  type: 'student' | 'admin' | 'teacher'
+  type?: 'student' | 'admin' | 'teacher'
 }
 
 const OPTIONS = {
   student: [
-    { icon: AppIcons.house, label: "Início", href: "#" },
-    { icon: AppIcons.books, label: "Disciplinas", href: "#" },
-    { icon: AppIcons.briefcase, label: "Notas", href: "#" },
+    { icon: AppIcons.house, label: "Início", href: "/inicio" },
+    { icon: AppIcons.books, label: "Disciplinas", href: "/disciplinas" },
+    { icon: AppIcons.mortarboard, label: "Alunos", href: "/alunos" },
   ],
   admin: [
-    { icon: AppIcons.house, label: "Início", href: "#" },
-    { icon: AppIcons.books, label: "Disciplinas", href: "#" },
-    { icon: AppIcons.mortarboard, label: "Alunos", href: "#" },
+    { icon: AppIcons.house, label: "Início", href: "/inicio" },
+    { icon: AppIcons.books, label: "Disciplinas", href: "/disciplinas" },
+    { icon: AppIcons.mortarboard, label: "Alunos", href: "/alunos" },
     { icon: AppIcons.book, label: "Cursos", href: "#" },
     { icon: AppIcons.chalkboard, label: "Professores", href: "#" },
   ],
   teacher: [
-    { icon: AppIcons.house, label: "Início", href: "#" },
-    { icon: AppIcons.books, label: "Disciplinas", href: "#" },
-    { icon: AppIcons.mortarboard, label: "Alunos", href: "#" },
+    { icon: AppIcons.house, label: "Início", href: "/inicio" },
+    { icon: AppIcons.books, label: "Disciplinas", href: "/disciplinas" },
+    { icon: AppIcons.mortarboard, label: "Alunos", href: "/alunos" },
     { icon: AppIcons.book, label: "Caderneta", href: "#" },
   ],
 }
@@ -34,10 +35,12 @@ export const Sidebar = ({ type = 'teacher' }: SidebarProps) => {
       
       <div className="flex flex-col w-full gap-6">
         {OPTIONS[type].map(option => (
-          <div className="flex gap-2">
-            <img src={option.icon} alt="Academic Hub logo"/>
-            <p className="text-xl font-bold text-white">{option.label}</p>
-          </div>
+          <Link to={option.href}>
+            <div className="flex gap-2 opacity-70 hover:opacity-100">
+              <img src={option.icon} alt="Academic Hub logo"/>
+              <p className="text-xl font-bold text-white ">{option.label}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
