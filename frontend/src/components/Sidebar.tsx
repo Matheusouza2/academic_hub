@@ -9,7 +9,7 @@ const OPTIONS = {
   student: [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
     { icon: AppIcons.books, label: "Disciplinas", href: "/disciplinas" },
-    { icon: AppIcons.mortarboard, label: "Alunos", href: "/alunos" },
+    { icon: AppIcons.mortarboard, label: "Notas", href: "/notas" },
   ],
   admin: [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
