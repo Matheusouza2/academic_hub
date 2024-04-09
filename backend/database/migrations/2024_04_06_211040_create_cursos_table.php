@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professores', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('siape');
-            $table->string('sexo');
-            $table->date('data_nascimento');
+            $table->string('nome')->unique();
+            $table->unsignedBigInteger('coordenador_id');
+            $table->integer('carga_horaria');
+            $table->string('sigla');
             $table->timestamps();
+            $table->foreign('coordenador_id')->references('id')->on('professores');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('professors');
+        Schema::dropIfExists('cursos');
     }
 };
