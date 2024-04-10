@@ -6,6 +6,7 @@ export function Router() {
     <Routes>
       <Route path='/' element={<Pages.Login />} />
       <Route path='/cadastro-disciplinas' element={<Pages.CreateSubjects />} />
+      <Route path='/Users' element={<Pages.Users />}/> 
     </Routes>
   )
 }
