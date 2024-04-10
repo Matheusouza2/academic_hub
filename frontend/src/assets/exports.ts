@@ -6,6 +6,7 @@ import mortarboard from './mortarboard.svg'
 import book from './book.svg'
 import chalkboard from './chalkboard.svg'
 import user from './user.svg'
+import disk from './disk.svg'
 
 export const AppIcons = {
   'logo': logo,
@@ -16,4 +17,5 @@ export const AppIcons = {
   'house': house,
   'mortarboard': mortarboard,
   'user': user,
+  'disk': disk,
 }
