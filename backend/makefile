@@ -17,5 +17,5 @@ create-db:
 db-create:
 	docker exec -it mysql mysql -u root -p -e "create database academic_hub;"
 db:
-	docker exec -it mysql mysql -u root -p
+	docker exec -it mysql bash -c "mysql -u root --password=12345678 academic_hub"
 up: up-db server
