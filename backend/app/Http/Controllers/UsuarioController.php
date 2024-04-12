@@ -19,6 +19,19 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|string',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min: 8',
+            'rg'=>'required|unique',
+            'data_nascimento' =>'required',
+            'sexo'=>'required',
+            'user_typer'=>'required',
+        ]);
+
+        User::create([
+            'nome' => $request->nome
+        ]);
     }
 
     public function show(string $id)
