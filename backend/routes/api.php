@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursosController;
+<<<<<<< HEAD
 use App\Http\Controllers\DisciplinaController;
+=======
+>>>>>>> ae80bbc1b781a8b5b217d875538c1a2dbe6bafa8
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +32,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('user')->group(function () {
 
-        Route::patch('/edit/{id}', [UsuarioController::class, 'update']);
+        Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
     });
   
   Route::prefix('cursos')->group(function(){
@@ -42,3 +45,7 @@ Route::prefix('v1')->group(function () {
   
 });
 
+    Route::prefix('cursos')->group(function () {
+        Route::post('store', [CursosController::class, 'store']);
+    });
+});
