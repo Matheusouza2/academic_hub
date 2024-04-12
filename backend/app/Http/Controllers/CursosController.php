@@ -8,7 +8,7 @@ use App\Models\Curso;
 class CursosController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Ex.
      */
     public function index()
     {
@@ -29,7 +29,7 @@ class CursosController extends Controller
 
     public function store(Request $request)
     {
-        //  o método validate do objeto request é chamado para garantir que os dados enviados atendao aos criterios
+        //  o método validate do objeto request é chamado para garantir que os dados enviados atenda aos criterios
         $request->validate([
             'nome' => 'required|unique:cursos', // O campo 'nome' e obrigatório e deve ser único na tabela 'cursos'.
             'coordenador_id' => ['required', 'exists:professores,id'], // O campo 'coordenador_id' é obrigatório e deve existir como 'id' na tabela 'professores'.
