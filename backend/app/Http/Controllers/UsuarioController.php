@@ -43,21 +43,15 @@ class UsuarioController extends Controller
     }
 
     // Função paara atualizar dados do usuario
-    public function update(UsuarioRequest $request, string $id)
+    public function update(UsuarioRequest $request, Usuario $usuario)
     {
-
         $validated = $request->validated();
-        try {
-            $usuario = Usuario::find($id);
 
-            if ($usuario == null) return response()->json(["error" => "user not found"], 404);
+        if (empty($validated)) return response()->json(["message" => "É necessário enviar algum parametro para alteração"], 400);
 
-            $usuario->update($validated);
-        } catch (Exception $e) {
-            return response()->json(["user_id" => $validated], 502);
-        }
+        $usuario->update($validated);
 
-        return response()->json(["user_id" => $validated]);
+        return response()->json(["message" => "usuario alterado!"], 200);
     }
 
     public function destroy(string $id)
