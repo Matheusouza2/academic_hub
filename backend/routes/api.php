@@ -23,7 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('v1/cadastrar', [AlunoController::class, 'store']);
 
-
 Route::prefix('v1')->group(function () {
 
     Route::prefix('user')->group(function () {
@@ -35,3 +34,5 @@ Route::prefix('v1')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
     });
 });
+
+Route::get('/listarusuarios', [UsuarioController::class, 'userListing']);
