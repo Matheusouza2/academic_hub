@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -29,6 +30,9 @@ Route::prefix('v1')->group(function () {
     Route::prefix('user')->group(function () {
 
         Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
+
+        Route::delete('delete/{id}', [UsuarioController::class,'destroy']);
+
     });
 
     Route::prefix('cursos')->group(function () {
