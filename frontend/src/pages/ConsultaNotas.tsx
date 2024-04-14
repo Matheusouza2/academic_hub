@@ -1,6 +1,6 @@
 import { Page } from "./Page";
 
-export function ConsultaNotas() {
+export function QueryGrades() {
   return (
     <Page typeSidebar="student" showSidebar={true}>
       <div className="flex flex-col h-full gap-6">
