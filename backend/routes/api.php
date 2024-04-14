@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,16 @@ Route::prefix('v1')->group(function () {
 
         Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
     });
+  
+  Route::prefix('cursos')->group(function(){
+      Route::post('store', [CursosController::class, 'store']);
+      // Para alteração de curso:
+      Route::post('update/{curso}', [CursosController::class, 'update']);
+  });
 
-    Route::prefix('cursos')->group(function () {
-        Route::post('store', [CursosController::class, 'store']);
-    });
+  Route::prefix('disciplinas')->group(function(){
+      Route::post('store', [DisciplinaController::class, 'store']);
+  });
+  
 });
+
