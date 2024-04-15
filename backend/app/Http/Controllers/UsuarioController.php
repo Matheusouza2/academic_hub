@@ -103,6 +103,7 @@ class UsuarioController extends Controller
         }
     }
 
+    //Função para validar Login
     public function checkLogin(Request $request)
     {
         $request->validate([
@@ -110,7 +111,7 @@ class UsuarioController extends Controller
             'senha' => ['required'],
         ]);
         
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::all(); //Criar um array dos usuários cadastrados no banco de dados
         
         $validoCpf = false;
         $validaSenha = false;
@@ -119,7 +120,7 @@ class UsuarioController extends Controller
         $countCpf = -1;
         $countSenha = -1;
         
-        foreach ($usuarios as $usuario) {
+        foreach ($usuarios as $usuario) { //Comparar os dados inseridos com o banco de dados
             if($usuarios[$count]->cpf === $request->cpf) {
                 $validoCpf = true;
                 $countCpf = $count;
