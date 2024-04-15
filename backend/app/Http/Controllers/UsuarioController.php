@@ -24,8 +24,13 @@ class UsuarioController extends Controller
     {
     }
 
-    public function show(string $id)
+    // Função para listagem de usuário
+    public function show()
     {
+
+        $usuario = Usuario::join('endereco', 'endereco.id', 'usuario.endereco')->join('tipo_usuario', 'tipo_usuario.id', 'usuario.tipo_usuario')->paginate(20);
+        return($usuario);
+
     }
 
     public function edit(string $id)
@@ -49,15 +54,6 @@ class UsuarioController extends Controller
     }
 
 
-    // Função para listagem de usuário]
-    public function userListing()
-    {
-
-        $usuario = Usuario::join('endereco', 'endereco.id', 'usuario.id')->join('tipo_usuario', 'tipo_usuario.id', 'usuario.id')->paginate(20);
-        return($usuario);
-
-
-    }
 }
 
 
