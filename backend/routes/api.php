@@ -30,9 +30,12 @@ Route::prefix('v1')->group(function () {
         Route::patch('/edit/{id}', [UsuarioController::class, 'update']);
     });
   
-  Route::prefix('cursos')->group(function(){
-      Route::post('store', [CursosController::class, 'store']);
-  });
-  
+    Route::prefix('cursos')->group(function(){
+        Route::post('store', [CursosController::class, 'store']);
+    });
+
+    Route::post('login', [UsuarioController::class, 'checkLogin']);
+      
 });
+
 

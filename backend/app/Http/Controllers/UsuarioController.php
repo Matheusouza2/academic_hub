@@ -50,4 +50,29 @@ class UsuarioController extends Controller
     public function destroy(string $id)
     {
     }
+
+    public function checkLogin(Request $request)
+    {
+        $request->validate([
+            'cpf' => ['required'],
+            'senha' => ['required'],
+        ]);
+        
+        $usuarios = Usuario::all();
+        
+        $validoCpf = false;
+        $validaSenha = false;
+
+        $count = 0;
+        
+        foreach ($usuarios as $usuario) {
+            if($usuarios[$count]->cpf === $request->cpf) $validoCpf = true;
+            if($usuarios[$count]->senha === $request->senha) $validaSenha = true;
+            $count++;
+        }
+
+        if($validoCpf && !$validaSenha) return response()->json(["error" => "Senha Inválida"], 400);
+            elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
+        else return response()->json(["success" => "Login de Usuário realizado"],200);
+    }
 }
