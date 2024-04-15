@@ -10,6 +10,6 @@ class AlunoController extends Controller
     {
         dd($request->aluno);
 
-        return response()->json(['message' => 'usuario cadastrado com sucesso !'], 200);
+        return response()->json(['message' => 'aluno cadastrado com sucesso !'], 200);
     }
 }
