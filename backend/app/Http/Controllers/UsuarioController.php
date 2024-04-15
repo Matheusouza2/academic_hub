@@ -116,8 +116,8 @@ class UsuarioController extends Controller
         $validaSenha = false;
 
         $count = 0;
-        $countCpf = 0;
-        $countSenha = 0;
+        $countCpf = -1;
+        $countSenha = -1;
         
         foreach ($usuarios as $usuario) {
             if($usuarios[$count]->cpf === $request->cpf) {
@@ -132,7 +132,7 @@ class UsuarioController extends Controller
         }
         
 
-        if(($validoCpf && !$validaSenha) || ($countCpf != $countSenha)) return response()->json(["error" => "Senha Inválida"], 400);
+        if(($validoCpf && !$validaSenha) && ($countCpf != $countSenha)) return response()->json(["error" => "Senha Inválida"], 400);
             elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
         else return response()->json(["success" => "Login de Usuário realizado"],200);
     }
