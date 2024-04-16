@@ -25,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('v1/cadastrar', [AlunoController::class, 'store']);
 
-
 Route::prefix('v1')->group(function () {
 
     Route::prefix('user')->group(function () {
@@ -33,6 +32,8 @@ Route::prefix('v1')->group(function () {
         Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
 
         Route::delete('delete/{id}', [UsuarioController::class,'destroy']);
+      
+      Route::get('/list', [UsuarioController::class, 'show']);
 
     });
   
