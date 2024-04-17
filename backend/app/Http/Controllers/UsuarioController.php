@@ -17,10 +17,7 @@ class UsuarioController extends Controller
     {
     }
 
-    public function store(){
-        
-    }
-    public function regraCadastro(Request $request)
+    public function store(Request $request)
     {
         //valida a entrada
         $validated=$request->validate([
