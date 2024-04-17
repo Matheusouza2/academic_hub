@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('v1/cadastrar', [UsuarioController::class, 'store']);
 
+Route::post('v1/cadastrar', [UsuarioController::class, 'regraCadastro']);
 
 Route::prefix('v1')->group(function () {
 
