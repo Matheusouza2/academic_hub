@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioRequest;
 use App\Models\Usuario;
+use App\Models\Endereco;
+use App\Models\TipoUsuario;
+use App\Models\User;
 use App\Models\Aluno;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,8 +25,13 @@ class UsuarioController extends Controller
     {
     }
 
-    public function show(string $id)
+    // Função para listagem de usuário
+    public function show()
     {
+
+        $usuario = Usuario::join('endereco', 'endereco.id', 'usuario.endereco')->join('tipo_usuario', 'tipo_usuario.id', 'usuario.tipo_usuario')->paginate(20);
+        return($usuario);
+
     }
 
     public function edit(string $id)
@@ -102,7 +110,6 @@ class UsuarioController extends Controller
             return response()->json(['message'=> 'Aluno deletado com sucesso.'], 200);
         }
     }
-
     //Função para validar Login
     public function checkLogin(Request $request)
     {
@@ -137,5 +144,5 @@ class UsuarioController extends Controller
             elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
         else return response()->json(["success" => "Login de Usuário realizado"],200);
     }
-}
 
+}
