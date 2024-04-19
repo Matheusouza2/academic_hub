@@ -110,7 +110,6 @@ class UsuarioController extends Controller
             return response()->json(['message'=> 'Aluno deletado com sucesso.'], 200);
         }
     }
-
     //Função para validar Login
     public function checkLogin(Request $request)
     {
