@@ -34,16 +34,18 @@ class CursosControllerTest extends TestCase
                 'nome' => 'Curso de Teste',
                 'coordenador_id' => '1',
             ]);
-    
+
         // Faz uma requisição POST para a rota de criação de cursos
-        $response = $this->postJson('/cursos', [
+        $response = $this->postJson('/api/v1/cursos/store', [
             'nome' => 'Curso de Teste',
             'coordenador_id' => '1',
+            'carga_horaria' => 100,
+            'sigla' => 'SG'
         ]);
-    
+
         // Verifica se a resposta tem o status HTTP 201
         $response->assertStatus(201);
-    
+
         // Verifica se a resposta tem a estrutura esperada
         $response->assertJson([
             'message' => 'Curso criado com sucesso',
@@ -54,5 +56,4 @@ class CursosControllerTest extends TestCase
             ],
         ]);
     }
-
 }
