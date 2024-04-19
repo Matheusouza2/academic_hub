@@ -144,5 +144,4 @@ class UsuarioController extends Controller
             elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
         else return response()->json(["success" => "Login de Usuário realizado"],200);
     }
-
 }
