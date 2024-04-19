@@ -132,25 +132,53 @@ export function QueryGrades() {
                   <div className="p-4">
                     <table className="w-full">
                       <thead>
-                        <tr>
-                          <th className="text-left">Nota 1</th>
-                          <th className="text-left">Nota 2</th>
-                          <th className="text-left">Nota 3</th>
-                          <th className="text-left">Nota Final</th>
-                          <th className="text-left">Média</th>
-                          <th className="text-left">Status</th>
-                          <th className="text-left">Faltas</th>
+                        <tr className="sm:table-row table-row">
+                          <th className="text-left sm:table-cell hidden">
+                            Nota 1
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Nota 2
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Nota 3
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Nota Final
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Média
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Status
+                          </th>
+                          <th className="text-left sm:table-cell hidden">
+                            Faltas
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td className="text-left">{discipline.grades[0]}</td>
-                          <td className="text-left">{discipline.grades[1]}</td>
-                          <td className="text-left">{discipline.grades[2]}</td>
-                          <td className="text-left">{discipline.finalGrade}</td>
-                          <td className="text-left">{discipline.average}</td>
-                          <td className="text-left">{discipline.status}</td>
-                          <td className="text-left">{discipline.faltas}</td>
+                        <tr className="sm:table-row table-row">
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.grades[0]}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.grades[1]}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.grades[2]}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.finalGrade}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.average}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.status}
+                          </td>
+                          <td className="text-left sm:table-cell hidden">
+                            {discipline.faltas}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
