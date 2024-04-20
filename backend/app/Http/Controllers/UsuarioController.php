@@ -23,6 +23,21 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
+        //valida a entrada
+        $validated=$request->validate([
+            'cpf'=>'required',
+            'nome'=>'required|string',
+            'email'=>'required|email|unique:users,email',
+            'senha'=>'required|min: 8',
+            'rg'=>'required',
+            'data_nascimento' =>'required|date_format:Y-m-d',
+            'sexo'=>'required|string|size:1',
+            'tipo_usuario'=>'required|numeric'
+        ]);
+
+        // recebe a validade e da o create
+        Usuario::create($validated);
+        return response()->json(["message" => "usuario cadastrado"], 200);
     }
 
     // Função para listagem de usuário
