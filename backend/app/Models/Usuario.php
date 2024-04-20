@@ -35,12 +35,12 @@ class Usuario extends Authenticatable implements JWTSubject
 
     public function endereco()
     {
-        return $this->hasOne(Endereco::class);
+        return $this->hasOne(Endereco::class, 'id', 'endereco');
     }
 
     public function tipoUsuario()
     {
-        return $this->hasOne(TipoUsuario::class);
+        return $this->hasOne(TipoUsuario::class, 'id', 'tipo_usuario');
     }
 
     public function login($credentials)
