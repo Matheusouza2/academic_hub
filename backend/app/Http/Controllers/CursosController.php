@@ -8,7 +8,7 @@ use App\Models\Curso;
 class CursosController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Ex.
      */
     public function index()
     {
@@ -29,7 +29,7 @@ class CursosController extends Controller
 
     public function store(Request $request)
     {
-        //  o método validate do objeto request é chamado para garantir que os dados enviados atendao aos criterios
+        //  o método validate do objeto request é chamado para garantir que os dados enviados atenda aos criterios
         $request->validate([
             'nome' => 'required|unique:cursos', // O campo 'nome' e obrigatório e deve ser único na tabela 'cursos'.
             'coordenador_id' => ['required', 'exists:professores,id'], // O campo 'coordenador_id' é obrigatório e deve existir como 'id' na tabela 'professores'.
@@ -67,9 +67,36 @@ class CursosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Curso $curso)
     {
-        //
+        // Para assegurar que as informações estejam nos conformes:
+        $request->validate([
+            // Nome é um atributo não facultativo;
+            // Abaixo, também são verificados todos os nomes de curso existentes, 
+            // à exceção do nome do curso antes da atualização.
+            
+            'nome' => ['required', "unique:cursos, nome, $curso->nome"],
+            'coordenador_id' => ['required', 'exists:professores,id'],
+            'carga_horaria' => 'required',
+            'sigla' => 'required'
+        ]);
+
+        // Em seguida, certificando-se de que o ID existe. Se não existir, este método encerrará prontamente
+        // e vai retornar erro 404. Senão, o fluxo de execução continuará.
+
+        if (!$curso) {
+            return response()->json(['message' => 'A operação falhou por ID inexistente.'], 404);
+        }
+
+        // (A SER APRECIADO PELO PROFESSOR) $curso->update($request->validated());
+
+        $curso->nome = $request->nome;
+        $curso->coordenador_id = $request->coordenador_id;
+        $curso->carga_horaria = $request->carga_horaria;
+        $curso->sigla = $request->sigla;
+        $curso->save();
+
+        return response()->json(['message' => 'Alteração de curso bem-sucedida.'], 201);
     }
 
     /**
