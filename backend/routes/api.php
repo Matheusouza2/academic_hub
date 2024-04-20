@@ -28,7 +28,7 @@ Route::prefix('v1')->group(function () {
 
         Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
 
-        Route::post('v1/cadastrar', [UsuarioController::class, 'store']);
+        Route::post('/cadastrar', [UsuarioController::class, 'store']);
     });
 
     Route::prefix('cursos')->group(function () {
