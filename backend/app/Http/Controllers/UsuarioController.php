@@ -7,6 +7,11 @@ use App\Models\Usuario;
 use App\Models\Aluno;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsuarioController extends Controller
 {
@@ -104,38 +109,31 @@ class UsuarioController extends Controller
     }
 
     //Função para validar Login
-    public function checkLogin(Request $request)
+    public function validateLogin(Request $request)
     {
+
         $request->validate([
             'cpf' => ['required'],
             'senha' => ['required'],
         ]);
-        
-        $usuarios = Usuario::all(); //Criar um array dos usuários cadastrados no banco de dados
-        
-        $validoCpf = false;
-        $validaSenha = false;
 
-        $count = 0;
-        $countCpf = -1;
-        $countSenha = -1;
-        
-        foreach ($usuarios as $usuario) { //Comparar os dados inseridos com o banco de dados
-            if($usuarios[$count]->cpf === $request->cpf) {
-                $validoCpf = true;
-                $countCpf = $count;
-            }
-            if($usuarios[$count]->senha === $request->senha) {
-                $validaSenha = true;
-                $countSenha = $count;
-            }
-            $count++;
-        }
-        
+        $credentials = $request->only(['cpf','senha']);
 
-        if(($validoCpf && !$validaSenha) && ($countCpf != $countSenha)) return response()->json(["error" => "Senha Inválida"], 400);
-            elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
-        else return response()->json(["success" => "Login de Usuário realizado"],200);
+        $token = JWTAuth::attempt($credentials);
+
+        dd($token);
+
+        /*
+        if($usuario == $request->senha)
+            return response()->json(['error' => 'Usuário Inválido'], 400);
+        
+        elseif (!$token = JWTAuth::attempt($credentials)) 
+            return response()->json(['error' => 'Senha Inválida'], 400);
+
+        */
+         
+        
+        //$senhaCriptografada = Hash::make($request->senha);
     }
 }
 
