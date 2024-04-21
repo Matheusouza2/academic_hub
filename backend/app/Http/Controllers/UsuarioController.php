@@ -10,6 +10,11 @@ use App\Models\User;
 use App\Models\Aluno;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsuarioController extends Controller
 {
@@ -126,37 +131,31 @@ class UsuarioController extends Controller
         }
     }
     //Função para validar Login
-    public function checkLogin(Request $request)
+    public function validateLogin(Request $request)
     {
+
         $request->validate([
             'cpf' => ['required'],
             'senha' => ['required'],
         ]);
-        
-        $usuarios = Usuario::all(); //Criar um array dos usuários cadastrados no banco de dados
-        
-        $validoCpf = false;
-        $validaSenha = false;
 
-        $count = 0;
-        $countCpf = -1;
-        $countSenha = -1;
-        
-        foreach ($usuarios as $usuario) { //Comparar os dados inseridos com o banco de dados
-            if($usuarios[$count]->cpf === $request->cpf) {
-                $validoCpf = true;
-                $countCpf = $count;
-            }
-            if($usuarios[$count]->senha === $request->senha) {
-                $validaSenha = true;
-                $countSenha = $count;
-            }
-            $count++;
-        }
-        
+        $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
 
-        if(($validoCpf && !$validaSenha) && ($countCpf != $countSenha)) return response()->json(["error" => "Senha Inválida"], 400);
-            elseif(!$validoCpf) return response()->json(["error" => "Usuário Inválido"], 400);
-        else return response()->json(["success" => "Login de Usuário realizado"],200);
+        if(!$usuario)
+            return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);;
+
+        $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
+
+        $token = JWTAuth::attempt($credentials);
+        
+        if(!$token) 
+            return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
+        
+        return response()->json([
+                'data' => [
+                    'token' => $token,
+                    'message' => 'Login realizado com sucesso.'
+                ]], 200);
+        
     }
 }
