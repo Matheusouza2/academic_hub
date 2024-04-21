@@ -139,22 +139,23 @@ class UsuarioController extends Controller
             'senha' => ['required'],
         ]);
 
-        $credentials = $request->only(['cpf','senha']);
+        $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
+
+        if(!$usuario)
+            return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);;
+
+        $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
 
         $token = JWTAuth::attempt($credentials);
-
-        dd($token);
-
-        /*
-        if($usuario == $request->senha)
-            return response()->json(['error' => 'Usuário Inválido'], 400);
         
-        elseif (!$token = JWTAuth::attempt($credentials)) 
-            return response()->json(['error' => 'Senha Inválida'], 400);
-
-        */
-         
+        if(!$token) 
+            return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
         
-        //$senhaCriptografada = Hash::make($request->senha);
+        return response()->json([
+                'data' => [
+                    'token' => $token,
+                    'message' => 'Login realizado com sucesso.'
+                ]], 200);
+        
     }
 }

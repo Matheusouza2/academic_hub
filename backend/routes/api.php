@@ -36,7 +36,6 @@ Route::prefix('v1')->group(function () {
       
       Route::get('/list', [UsuarioController::class, 'show']);
 
-    });
 
     Route::prefix('cursos')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
