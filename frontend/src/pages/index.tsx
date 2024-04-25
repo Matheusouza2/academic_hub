@@ -3,11 +3,13 @@ import { Login } from "./Login";
 import { CadCurso } from "./CadCurso";
 import { QueryGrades } from "./ConsultaNotas";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
+import{ DashboardAluno } from "./DashboardAluno";
 
 export const Pages = {
   Login,
   CreateSubjects,
   CadCurso,
   QueryGrades,
-  ScreenReviewApproval
+  ScreenReviewApproval,
+  DashboardAluno
 }

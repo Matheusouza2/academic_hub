@@ -32,7 +32,9 @@ Route::prefix('v1')->group(function () {
         Route::post('/cadastrar', [UsuarioController::class, 'store']);
     });
 
-        Route::delete('delete/{id}', [UsuarioController::class, 'destroy']);
+        Route::delete('delete/{id}', [UsuarioController::class,'destroy']);
+
+      Route::get('/list', [UsuarioController::class, 'show']);
 
 
     Route::prefix('cursos')->group(function () {

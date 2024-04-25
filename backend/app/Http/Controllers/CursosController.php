@@ -57,7 +57,7 @@ class CursosController extends Controller
     }
 
     /**
-     * Show he form for editing the specified resource.
+     * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
@@ -75,7 +75,7 @@ class CursosController extends Controller
             // Abaixo, também são verificados todos os nomes de curso existentes,
             // à exceção do nome do curso antes da atualização.
 
-            'nome' => ['required', "unique:cursos,nome,$curso->nome"],
+            'nome' => ['required', "unique:cursos, nome, $curso->nome"],
             'coordenador_id' => ['required', 'exists:professores,id'],
             'carga_horaria' => 'required',
             'sigla' => 'required'

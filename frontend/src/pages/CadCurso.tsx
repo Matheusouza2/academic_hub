@@ -3,11 +3,11 @@ import { AppIcons } from "../assets/exports";
 import { Page } from "./Page";
 
 export function CadCurso() {
-    const { register } = useForm()
+    const { register, handleSubmit } = useForm()
 
-    /*   const onSubmit = (data) => {
-  
-      } */
+    const onSubmit = (data) => {
+        
+      }
 
         return (
             <Page>
@@ -30,20 +30,20 @@ export function CadCurso() {
                             </div>
                         </div>
 
-                    <div className="flex gap-8">
-                        <div className="flex flex-col flex-1 max-w-[264px]">
-                            <label htmlFor="ch_teory" className="text-gray-900">Sigla</label>
-                            <input {...register('sigla')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Uma sigla para representar o curso" />
+                        <div className="flex gap-8">
+                            <div className="flex flex-col flex-1 max-w-[264px]">
+                                <label htmlFor="ch_teory" className="text-gray-900">Sigla</label>
+                                <input {...register('sigla')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Uma sigla para representar o curso" />
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="submit" className="self-end mt-auto w-[264px] hover:opacity-90 transition-all flex items-center justify-center gap-2 rounded-md bg-green text-white py-2">
-                        <img src={AppIcons.disk} alt="Disquete" />
-                        Salvar
-                    </button>
-                </form>
-            </div>
-        </Page >
-    )
-}
+                        <button type="submit" className="self-end mt-auto w-[264px] hover:opacity-90 transition-all flex items-center justify-center gap-2 rounded-md bg-green text-white py-2">
+                            <img src={AppIcons.disk} alt="Disquete" />
+                            Salvar
+                        </button>
+                    </form>
+                </div>
+            </Page>
+        )
+    }
 
