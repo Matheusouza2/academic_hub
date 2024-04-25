@@ -8,7 +8,7 @@ type SidebarProps = {
 const OPTIONS = {
   student: [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
-    { icon: AppIcons.books, label: "Disciplinas", href: "/cadastro-disciplinas" },
+    { icon: AppIcons.books, label: "Disciplinas", href: "" },
     { icon: AppIcons.briefcase, label: "Notas", href: "/notas" },
   ],
   admin: [
@@ -24,6 +24,9 @@ const OPTIONS = {
     { icon: AppIcons.mortarboard, label: "Alunos", href: "/alunos" },
     { icon: AppIcons.book, label: "Caderneta", href: "#" },
   ],
+
+
+
 }
 
 export const Sidebar = ({ type = 'teacher' }: SidebarProps) => {

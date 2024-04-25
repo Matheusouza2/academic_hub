@@ -14,21 +14,21 @@ export function CadCurso() {
                 <div className="flex flex-col h-full gap-6">
                     <h1 className="text-4xl font-bold">Cursos / Alterar curso</h1>
 
-                <form className="flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl">
-                    <div className="flex gap-8">
-                        <div className="flex flex-col">
-                            <label htmlFor="name" className="text-gray-900">Nome</label>
-                            <input {...register('name')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome do curso" />
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl">
+                        <div className="flex gap-8">
+                            <div className="flex flex-col">
+                                <label htmlFor="name" className="text-gray-900">Nome</label>
+                                <input {...register('name')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome do curso" />
+                            </div>
+                            <div className="flex flex-col flex-1 max-w-[264px]">
+                                <label htmlFor="sigla" className="text-gray-900">Carga Horária</label>
+                                <input {...register('carga-horaria')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
+                            </div>
+                            <div className="flex flex-col flex-1 max-w-[264px]">
+                                <label htmlFor="code" className="text-gray-900">Coordenador</label>
+                                <input {...register('coordenador')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Selecione" />
+                            </div>
                         </div>
-                        <div className="flex flex-col flex-1 max-w-[264px]">
-                            <label htmlFor="sigla" className="text-gray-900">Carga Horária</label>
-                            <input {...register('carga-hararia')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
-                        </div>
-                        <div className="flex flex-col flex-1 max-w-[264px]">
-                            <label htmlFor="code" className="text-gray-900">Coordenador</label>
-                            <input {...register('coordenador')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Selecione" />
-                        </div>
-                    </div>
 
                     <div className="flex gap-8">
                         <div className="flex flex-col flex-1 max-w-[264px]">
