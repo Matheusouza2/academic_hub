@@ -62,7 +62,7 @@ export function Dialog({ setModal, info }: Props) {
 
                         <h2 className="text-xl font-semibold mt-4 text-gray-800">Unidade Programática</h2>
                         <div className="flex flex-col h-full gap-6">
-                            <table className="table-auto min-w-full  divide-y divide-gray-200">
+                            <table className="table-auto min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-200">
                                     <tr>
                                         <th className="px-4 py-2 bg-gray-200 text-center  text-gray-700">Data</th>
