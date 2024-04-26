@@ -85,7 +85,7 @@ export function ScreenReviewApproval() {
 
     return (
         <Page>
-            <div className="flex flex-col h-full gap-6">
+            <div className="flex flex-col h-[91%] gap-6">
                 <h1 className="text-4xl font-bold">Revisão Plano de Aula</h1>
                 {/* flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl */}
                 <table className="table-auto min-w-full  divide-y divide-gray-200">
