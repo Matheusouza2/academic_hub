@@ -2,17 +2,17 @@ import { useForm } from "react-hook-form";
 import { AppIcons } from "../assets/exports";
 import { Page } from "./Page";
 
-export function CadCurso() {
+export function Course_registration() {
     const { register, handleSubmit } = useForm()
 
-    const onSubmit = (data) => {
-        
+    const onSubmit = (data: any) => {
+        console.log('course data =>', data)
       }
 
         return (
             <Page>
-                <div className="flex flex-col h-[91%] gap-6">
-                    <h1 className="text-4xl font-bold">Cursos / Alterar curso</h1>
+                <div className="flex flex-col h-full gap-6">
+                    <h1 className="text-4xl font-bold">Cursos / Cadastrar novo curso</h1>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl">
                         <div className="flex gap-8">
@@ -22,7 +22,7 @@ export function CadCurso() {
                             </div>
                             <div className="flex flex-col flex-1 max-w-[264px]">
                                 <label htmlFor="sigla" className="text-gray-900">Carga Horária</label>
-                                <input {...register('carga-horaria')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
+                                <input {...register('carga-hararia')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
                             </div>
                             <div className="flex flex-col flex-1 max-w-[264px]">
                                 <label htmlFor="code" className="text-gray-900">Coordenador</label>
@@ -46,4 +46,3 @@ export function CadCurso() {
             </Page>
         )
     }
-
