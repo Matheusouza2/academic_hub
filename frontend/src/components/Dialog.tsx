@@ -14,6 +14,7 @@ type Props = {
 }
 
 export function Dialog({ setModal, info }: Props) {
+
     const close = () => {
         console.log("CLOSED")
         setModal(false)

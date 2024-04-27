@@ -31,7 +31,7 @@ export function CadCurso() {
                         </div>
 
                         <div className="flex gap-8">
-                            <div className="flex flex-col flex-1 max-w-[264px]">
+                            <div className="flex flex-col flex-1">
                                 <label htmlFor="ch_teory" className="text-gray-900">Sigla</label>
                                 <input {...register('sigla')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Uma sigla para representar o curso" />
                             </div>
