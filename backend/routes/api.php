@@ -42,7 +42,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('cursos')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
         // Para alteração de curso:
-        Route::post('update/{curso}', [CursosController::class, 'update']);
+        Route::put('update/{curso}', [CursosController::class, 'update']);
     });
 
   Route::post('login', [UsuarioController::class, 'validateLogin']);
@@ -50,4 +50,5 @@ Route::prefix('v1')->group(function () {
   Route::prefix('disciplinas')->group(function () {
     Route::post('store', [DisciplinaController::class, 'store']);
   });
+
 });

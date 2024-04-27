@@ -33,7 +33,7 @@ export const Sidebar = ({ type = 'teacher' }: SidebarProps) => {
   const { pathname } = useLocation()
 
   return (
-    <div className="bg-gradient-to-b from-blue-400 to-blue-700 h-full rounded-2xl w-[244px] flex flex-col items-center pt-8 px-4 gap-9 mr-8">
+    <div className="bg-gradient-to-b from-blue-400 to-blue-700 h-full rounded-2xl w-[244px] flex flex-col items-center pt-8 px-4 gap-9 mr-5">
       <div className="p-4 bg-blue-700 w-fit rounded-2xl">
         <img src={AppIcons.logo} alt="Academic Hub logo" />
       </div>
