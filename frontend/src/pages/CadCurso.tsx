@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
 import { AppIcons } from "../assets/exports";
 import { Page } from "./Page";
+import axios from "axios";
+import { api } from "../services/api";
+
 
 export function CadCurso() {
     const { register, handleSubmit } = useForm()
-
+    const curso_id = 1
     const onSubmit = (data) => {
+
+        api.put(`/v1/cursos/update/${curso_id}`, data)
         
       }
 
@@ -18,15 +23,15 @@ export function CadCurso() {
                         <div className="flex gap-8">
                             <div className="flex flex-col">
                                 <label htmlFor="name" className="text-gray-900">Nome</label>
-                                <input {...register('name')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome do curso" />
+                                <input {...register('nome')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome do curso" />
                             </div>
                             <div className="flex flex-col flex-1 max-w-[264px]">
                                 <label htmlFor="sigla" className="text-gray-900">Carga Horária</label>
-                                <input {...register('carga-horaria')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
+                                <input {...register('carga_horaria')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
                             </div>
                             <div className="flex flex-col flex-1 max-w-[264px]">
                                 <label htmlFor="code" className="text-gray-900">Coordenador</label>
-                                <input {...register('coordenador')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Selecione" />
+                                <input {...register('coordenador_id')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Selecione" />
                             </div>
                         </div>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AulasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,8 +40,16 @@ Route::prefix('v1')->group(function () {
   });
 
   Route::prefix('aluno')->group(function () {
-    Route::get('/notas/show/{id}',[AlunoController::class,'showGrades']);
+    Route::get('/notas/show/{id}', [AlunoController::class, 'showGrades']);
   });
+
+  Route::prefix('aulas')->group(function () {
+    Route::post('/criar', [AulasController::class, 'store']);
+  });
+
+  Route::delete('delete/{id}', [UsuarioController::class, 'destroy']);
+
+  Route::get('/list', [UsuarioController::class, 'show']);
 
   Route::post('login', [UsuarioController::class, 'validateLogin']);
 
