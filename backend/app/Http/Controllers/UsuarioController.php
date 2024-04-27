@@ -67,7 +67,7 @@ class UsuarioController extends Controller
 
         $usuario->update($validated);
 
-        return response()->json(["message" => "usuario alterado!"], 200);
+        return response()->json(["message" => "usuário alterado!"], 200);
     }
 
 
@@ -148,8 +148,8 @@ class UsuarioController extends Controller
         $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
 
         $token = JWTAuth::attempt($credentials);
-
-        if (!$token)
+       
+        if(!$token) 
             return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
 
         return response()->json([
