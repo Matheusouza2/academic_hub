@@ -9,6 +9,7 @@ export function Router() {
       <Route path="/cadastro-curso" element={<Pages.CadCurso />} />
       <Route path='/cursos/plano_aprovacao' element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.QueryGrades />} />
+      <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
     </Routes>
   );
 }
