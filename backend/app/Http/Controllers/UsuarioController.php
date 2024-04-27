@@ -29,15 +29,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //valida a entrada
-        $validated = $request->validate([
-            'cpf' => 'required',
-            'nome' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'senha' => 'required|min: 8',
-            'rg' => 'required',
-            'data_nascimento' => 'required|date_format:Y-m-d',
-            'sexo' => 'required|string|size:1',
-            'tipo_usuario' => 'required|numeric'
+        $validated=$request->validate([
+            'cpf'=>'required',
+            'nome'=>'required|string',
+            'email'=>'required|email|unique:users,email',
+            'senha'=>'required|min: 8',
+            'rg'=>'required',
+            'data_nascimento' =>'required|date_format:Y-m-d',
+            'sexo'=>'required|string|size:1',
+            'tipo_usuario'=>'required|numeric'
         ]);
 
         // recebe a validade e da o create
@@ -141,21 +141,21 @@ class UsuarioController extends Controller
 
         $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
 
-        if (!$usuario)
+        if(!$usuario)
             return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);;
 
         $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
 
         $token = JWTAuth::attempt($credentials);
-
-        if (!$token)
+       
+        if(!$token) 
             return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
-
+        
         return response()->json([
-            'data' => [
-                'token' => $token,
-                'message' => 'Login realizado com sucesso.'
-            ]
-        ], 200);
+                'data' => [
+                    'token' => $token,
+                    'message' => 'Login realizado com sucesso.'
+                ]], 200);
+        
     }
 }

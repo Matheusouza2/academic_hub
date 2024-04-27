@@ -110,7 +110,7 @@ export function QueryGrades() {
 
   return (
     <Page typeSidebar="student" showSidebar={true}>
-      <div className="flex flex-col h-full gap-6">
+      <div className="flex flex-col h-[91%] gap-6">
         <h1 className="text-4xl font-bold roboto">Notas</h1>
         <div className="flex flex-col w-full gap-6 p-6 bg-white rounded-md shadow-2xl">
           {disciplines.map((discipline, index) => (

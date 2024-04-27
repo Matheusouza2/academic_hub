@@ -11,7 +11,7 @@ export function CadCurso() {
 
         return (
             <Page>
-                <div className="flex flex-col h-full gap-6">
+                <div className="flex flex-col h-[91%] gap-6">
                     <h1 className="text-4xl font-bold">Cursos / Alterar curso</h1>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl">

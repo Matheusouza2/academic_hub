@@ -44,9 +44,8 @@ Route::prefix('v1')->group(function () {
     });
 
   Route::post('login', [UsuarioController::class, 'validateLogin']);
-
+  
   Route::prefix('disciplinas')->group(function () {
     Route::post('store', [DisciplinaController::class, 'store']);
   });
-
 });
