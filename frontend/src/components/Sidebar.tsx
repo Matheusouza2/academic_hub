@@ -37,7 +37,7 @@ export const Sidebar = ({ type = 'teacher' }: SidebarProps) => {
 
   return (
 
-    <div className="invisible md:visible bg-gradient-to-b from-blue-400 to-blue-700 h-full rounded-2xl w-0 md:w-[110px] lg:w-[195px] xl:w-[225px] flex flex-col items-center pt-8 px-2 lg:px-3 gap-7 lg:gap-9 mr-0 md:mr-8">
+    <div className="invisible md:visible bg-gradient-to-b from-blue-400 to-blue-700 rounded-2xl w-0 md:w-[110px] lg:w-[195px] xl:w-[225px] flex flex-col items-center pt-8 px-2 lg:px-3 gap-7 lg:gap-9 mr-0 md:mr-8">
       <div className=" p-3 lg:p-5 bg-blue-700 rounded-2xl">
         <img src={AppIcons.logo} alt="Academic Hub logo" className=" h-[65px] lg:h-[110px] w-[60px] lg:w-[120px] xl:w-[135px]"/>
       </div>
