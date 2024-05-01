@@ -17,4 +17,11 @@ class Professor extends Model
         'sexo',
         'data_nascimento'
     ];
+
+    //função que define o relacionamento entre disciplina e professor
+    public function disciplines()
+    {
+        return $this->belongsToMany('App\Models\Disciplina');
+    }
+  
 }
