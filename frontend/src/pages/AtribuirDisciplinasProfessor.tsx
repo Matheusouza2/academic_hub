@@ -23,6 +23,7 @@ export function AtribuirDisciplinasProfessor(data) {
     { siape: "123", nome: "Professor 1", disciplinas: [] },
     { siape: "456", nome: "Professor 2", disciplinas: [] },
   ]);
+
   const [disciplinas] = useState<Disciplina[]>([
     { id: "1", nome: "Matematica 1" },
     { id: "2", nome: "Disciplina 2" },
