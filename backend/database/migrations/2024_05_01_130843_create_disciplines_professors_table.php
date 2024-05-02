@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professores', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->string('siape');
-            $table->string('sexo');
-            $table->date('data_nascimento');
+        Schema::create('disciplines_professors', function (Blueprint $table) {
+            $table->foreignId('disciplinas_id')->constrained();
+            $table->foreignId('professores_id')->constrained();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professores');
+        Schema::dropIfExists('disciplines_professors');
     }
 };

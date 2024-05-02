@@ -63,7 +63,7 @@ export function CreateSubjects() {
                 <img src={AppIcons.disk} alt="Disquete" />
                 Salvar
               </button>
-            </div> 
+            </div>
 
         </form>
       </div>

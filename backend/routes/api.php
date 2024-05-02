@@ -4,6 +4,7 @@ use App\Http\Controllers\CursosController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AulasController;
+use App\Http\Controllers\CoordenadorController;
 use App\Http\Controllers\NotaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,4 +57,9 @@ Route::prefix('v1')->group(function () {
   Route::prefix('disciplinas')->group(function () {
     Route::post('store', [DisciplinaController::class, 'store']);
   });
+
+  Route::prefix('coordenador')->group(function () {
+    Route::post('store', [CoordenadorController::class, 'store']);
+  });
+
 });

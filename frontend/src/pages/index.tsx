@@ -3,8 +3,13 @@ import { Login } from "./Login";
 import { CadCurso } from "./CadCurso";
 import { QueryGrades } from "./ConsultaNotas";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
-import{ DashboardAluno } from "./DashboardAluno";
-import {ListSubjectsByTeacher} from "./ListSubjectsByTeacher"
+import { DashboardAluno } from "./DashboardAluno";
+import { ListSubjectsByTeacher } from "./ListSubjectsByTeacher"
+import { ClassRegistration } from "./ClassRegistration";
+import { DashboardAluno } from "./DashboardAluno";
+import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
+
+
 export const Pages = {
   Login,
   CreateSubjects,
@@ -13,4 +18,6 @@ export const Pages = {
   ScreenReviewApproval,
   DashboardAluno,
   ListSubjectsByTeacher,
-}
+  ClassRegistration,
+  AtribuirDisciplinasProfessor
+};
