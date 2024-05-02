@@ -10,6 +10,7 @@ export function Router() {
       <Route path='/cursos/plano_aprovacao' element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.QueryGrades />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
+      <Route path="/registro-de-aula" element={<Pages.ClassRegistration/>} />
       <Route path="/AtribuirDisciplinasProfessor" element={<Pages.AtribuirDisciplinasProfessor/>} />
     </Routes>
   );
