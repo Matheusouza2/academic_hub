@@ -4,12 +4,13 @@ import { CadCurso } from "./CadCurso";
 import { QueryGrades } from "./ConsultaNotas";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import{ DashboardAluno } from "./DashboardAluno";
-
+import {ListSubjectsByTeacher} from "./ListSubjectsByTeacher"
 export const Pages = {
   Login,
   CreateSubjects,
   CadCurso,
   QueryGrades,
   ScreenReviewApproval,
-  DashboardAluno
+  DashboardAluno,
+  ListSubjectsByTeacher,
 }
