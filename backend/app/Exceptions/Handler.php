@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
     }
 
     public function render($request, Throwable $exception)
-    {
+{
         if ($exception instanceof ModelNotFoundException) {
             return response()->json(["message" => "Usuário não encontrado"], 404);
         }
