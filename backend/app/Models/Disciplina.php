@@ -25,4 +25,11 @@ class Disciplina extends Model
         return $this->belongsTo(Curso::class, 'curso_id', 'id');
     }
 
+    //função que define o relacionamento entre disciplina e professor
+    public function professors()
+    {
+        return $this->belongsToMany('App\Models\Professor');
+        
+    }
+
 }

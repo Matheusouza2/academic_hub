@@ -3,8 +3,9 @@ import { Login } from "./Login";
 import { CadCurso } from "./CadCurso";
 import { QueryGrades } from "./ConsultaNotas";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
-import{ DashboardAluno } from "./DashboardAluno";
 import { ClassRegistration } from "./ClassRegistration";
+import { DashboardAluno } from "./DashboardAluno";
+import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
 
 export const Pages = {
   Login,
@@ -13,5 +14,6 @@ export const Pages = {
   QueryGrades,
   ScreenReviewApproval,
   DashboardAluno,
-  ClassRegistration
-}
+  ClassRegistration,
+  AtribuirDisciplinasProfessor
+};
