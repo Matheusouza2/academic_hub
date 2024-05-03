@@ -5,21 +5,21 @@ import { Page } from "./Page";
 export function CreateSubjects() {
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: object) => {
     console.log('subject data =>', data)
   }
 
   return (
     <Page typeSidebar="teacher">
-      
+
       <div className="flex flex-col gap-1">
-        
+
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Cadastrar nova disciplina</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-sc p-6 bg-white rounded-md shadow-2xl">
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 px-6 gap-3">
-  
+
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
               <label htmlFor="name" className="text-gray-900">Nome</label>
               <input {...register('name')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome da disciplina" />
@@ -59,11 +59,11 @@ export function CreateSubjects() {
           </div>
 
           <div className="w-full flex justify-end mt-10 lg:mt-20 pr-6">
-              <button type="button" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-green text-white py-2 px-4">
-                <img src={AppIcons.disk} alt="Disquete" />
-                Salvar
-              </button>
-            </div>
+            <button type="button" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-green text-white py-2 px-4">
+              <img src={AppIcons.disk} alt="Disquete" />
+              Salvar
+            </button>
+          </div>
 
         </form>
       </div>

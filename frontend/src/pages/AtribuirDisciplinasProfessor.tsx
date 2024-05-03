@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Page } from "./Page";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 import { toast, ToastContainer } from "react-toastify";
 
 interface Professor {
@@ -18,7 +18,7 @@ interface Disciplina {
   nome: string;
 }
 
-export function AtribuirDisciplinasProfessor(data) {
+export function AtribuirDisciplinasProfessor() {
   const [professores, setProfessores] = useState<Professor[]>([
     { siape: "123", nome: "Professor 1", disciplinas: [] },
     { siape: "456", nome: "Professor 2", disciplinas: [] },

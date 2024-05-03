@@ -6,7 +6,6 @@ import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import { DashboardAluno } from "./DashboardAluno";
 import { ListSubjectsByTeacher } from "./ListSubjectsByTeacher"
 import { ClassRegistration } from "./ClassRegistration";
-import { DashboardAluno } from "./DashboardAluno";
 import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
 
 
