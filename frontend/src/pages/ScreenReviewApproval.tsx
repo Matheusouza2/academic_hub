@@ -3,9 +3,12 @@ import { FaCheck } from "react-icons/fa";
 import { MdOutlineRateReview } from "react-icons/md";
 import { Dialog } from "../components/Dialog";
 import { useState } from "react";
+import { useMediaQuery } from 'react-responsive'
 
 
 export function ScreenReviewApproval() {
+ const isMidScreen = useMediaQuery({ query: '(min-width: 768px)' })
+ const isLowScreen = useMediaQuery({ query: '(min-width: 640px)' })
  const data = [
     {
         "disciplina": "Matemática Discreta",
@@ -85,24 +88,24 @@ export function ScreenReviewApproval() {
 
     return (
         <Page>
-            <div className="flex flex-col h-full gap-6">
+            <div className="flex flex-col h-[90%] gap-10">
                 <h1 className="text-4xl font-bold">Revisão Plano de Aula</h1>
                 {/* flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl */}
-                <table className="table-auto min-w-full  divide-y divide-gray-200">
+                <table className="table-auto min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-200">
                         <tr>
                             <th className="px-4 py-2 bg-gray-200 text-gray-700">Ações</th>
-                            <th className="px-4 py-2 bg-gray-200 text-gray-700">Curso</th>
+                            {isMidScreen && <th className="px-4 py-2 bg-gray-200 text-gray-700">Curso</th>}
                             <th className="px-4 py-2 bg-gray-200 text-gray-700">Disciplina</th>
                             <th className="px-4 py-2 bg-gray-200 text-gray-700">Professor</th>
-                            <th className="px-4 py-2 bg-gray-200 text-gray-700">Data</th>
+                            {isLowScreen && <th className="px-4 py-2 bg-gray-200 text-gray-700">Data</th>}
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td className="px-4 py-2 text-center whitespace-nowrap">
-                                <div className="w-full flex justify-evenly">
-                                    <button className="text-white bg-green p-2 rounded-md" title="Aprovar Plano" onClick={approves}>
+                                <div className="w-full flex justify-center">
+                                    <button className="text-white bg-green p-2 mr-3 lg:mr-5 xl:mr-8 rounded-md" title="Aprovar Plano" onClick={approves}>
                                         <FaCheck/>
                                     </button>
                                     <button className="text-white bg-blue-500 p-2 rounded-md" title="Revisar Plano" onClick={() => setModal(true)}>
@@ -110,10 +113,10 @@ export function ScreenReviewApproval() {
                                     </button>
                                 </div>
                             </td>
-                            <td className="px-4 py-2 text-center whitespace-nowrap">Ciência da Computação</td>
+                            {isMidScreen && <td className="px-4 py-2 text-center whitespace-nowrap">Ciência da Computação</td>}
                             <td className="px-4 py-2 text-center whitespace-nowrap">Matématica Discreta</td>
                             <td className="px-4 py-2 text-center whitespace-nowrap">Débora Araujo</td>
-                            <td className="px-4 py-2 text-center whitespace-nowrap">10/12/2023</td>
+                            {isLowScreen && <td className="px-4 py-2 text-center whitespace-nowrap">10/12/2023</td>}
                         </tr>
                     </tbody>
                 </table>
