@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disciplina;
 use App\Models\DisciplinaProfessor;
 
 use Illuminate\Http\Request;
@@ -27,19 +28,25 @@ class CoordenadorController extends Controller
     /**
     * Store a newly created resource in storage.
     */
-    public function store(Request $request)
-    {
+   public function store(Request $request)
+   {
 
-        DisciplinaProfessor::create([
-            'disciplinas_id' => $request->professor_id,
-            'professores_id' => $request->disciplina_id
-        ]);
+      if(DisciplinaProfessor::where('disciplinas_id', $request->disciplinas_id)){ //Verificar se existe a disciplina requisitada no BD
+         return response()->json([
+            'message' => 'Essa disciplina já foi atribuída a um professor',
+         ]);
+      }
 
-        return response()->json([
-            'message' => 'Disciplina atribuída ao Professor com sucesso',
-        ]);
+      DisciplinaProfessor::create([ //Criando Registro no BD
+         'disciplinas_id' => $request->disciplinas_id,
+         'professores_id' => $request->professores_id
+      ]);
 
-    }
+      return response()->json([
+         'message' => 'Disciplina atribuída ao Professor com sucesso',
+      ]);
+
+   }
 
    /**
     * Display the specified resource.
