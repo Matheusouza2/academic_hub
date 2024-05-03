@@ -1,44 +1,42 @@
 import logo from "/src/assets/logo.svg"
+import login from "/src/assets/imagen-login.svg"
 
 export function Login() {
   return (
-      <>
-      <div>Login</div>
+    <>
+  
 
-{/* container principal */}
-<div className="containerPrim">
+  <section className="flex items-center justify-center h-screen w-screen">
 
+    {/* container principal */}
+    <div className="flex items-center justify-center overflow-hidden rounded-3xl h-1/2 w-1/2 shadow-2xl">
+      {/* imagem */}
+      <div className="bg-blue-400 sm:block hidden w-1/2">
+        <img src={login} alt="imagem login" />
+      </div>
+      {/* formulário */}
+      <div className="sm:w-1/2 flex flex-col items-center justify-center space-y-2">
+        <header>
+          <img src={logo} alt="logo" />
+        </header>
+        <form action=""className="flex flex-col items-center">
+              <label htmlFor="cpf" >Usuário</label>
+              <input type="text" id="cpf" placeholder="Usuário" className="bg-gray-500" />
+              <label htmlFor="password">Senha</label>
+              <input type="password" id="password" placeholder="***********" className="bg-gray-500" />
+              <span className=" flex text-[12px]  text-gray-900 items-center justify-end m-2 space-x-2 w-full">
+              <input type="checkbox" id="check" className="bg-gray-500" />
+              <label htmlFor="check">manter conectado?</label>
+              </span>
+              <button className="bg-blue-400 w-full px-4 py-2 text-white ">Login</button>
+        </form>
 
-  {/* container da imagem */}
-  <div className="flex bg-blue-400">
-  <img src="" alt="" />
-  </div>
-
-  <div>
-    <img src={logo} alt="" />
-  </div>
-
-  <form >  
-    {/* contender dos formularios */}
-    <div className="inputContainer">
-      <label htmlFor="cpf">cpf</label>
-      <input type="text" name="cpf" id="cpf"placeholder="000.000.000-00" />
-
+            <p className="text-[10px] text-[#7575D8] "><a href="">Esqueci minha senha?</a></p>
+      </div>
     </div>
 
-    <div className="inputContainer">
-      <label htmlFor="password">password</label>
-      <input type="password" name="password" id="password"placeholder="***********" />
-
-    </div>
-
-    <button className="button">Login</button>
-
-    <a href="">esqueci minha senha</a>
-
-  </form>
-
-</div>
-</>
+  </section>
+  </>
   )
 }
+
