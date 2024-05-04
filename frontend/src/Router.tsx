@@ -13,6 +13,7 @@ export function Router() {
       <Route path="/professor/listagem-disciplinas" element={<Pages.ListSubjectsByTeacher/>} />
       <Route path="/registro-de-aula" element={<Pages.ClassRegistration/>} />
       <Route path="/AtribuirDisciplinasProfessor" element={<Pages.AtribuirDisciplinasProfessor/>} />
+      <Route path='/ListCursos' element={<Pages.ListCursos />} />
     </Routes>
   );
 }
