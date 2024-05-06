@@ -18,5 +18,5 @@ class PeriodoLetivo extends Model
     ];
 
     //cast do campo dataInicio e dataTermino para um valor date
-    protected $casts = ['dataInicio'=>'date', 'dataTermino'=>'data'];
+    protected $casts = ['dataInicio'=>'date', 'dataTermino'=>'date'];
 }
