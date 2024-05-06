@@ -13,7 +13,10 @@ class PeriodoLetivo extends Model
     protected $fillable = [
         'id',
         'descricao',
-        'dataInicio' => 'date',
-        'dataTermino' => 'date',
+        'dataInicio',
+        'dataTermino',
     ];
+
+    //cast do campo dataInicio e dataTermino para um valor date
+    protected $casts = ['dataInicio'=>'date', 'dataTermino'=>'data'];
 }

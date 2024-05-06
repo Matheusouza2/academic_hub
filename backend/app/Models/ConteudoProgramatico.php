@@ -12,13 +12,15 @@ class ConteudoProgramatico extends Model
 
     protected $fillable = [
         'id',
-        'data_aula'  => 'date',
+        'data_aula',
         'conteudo',
-        'horario_aula'  => 'time',
-        'professor_id',
+        'horario_aula',
         'disciplina_id',
         'periodoLetivo_id'
     ];
+
+    //cast dos campos data_aula para um valor date e horario_aula para time
+    protected $casts = ['data_aula'=>'date' , 'horario_aula'=>'time'];
 
     //funções que definem os relacionamentos entre conteudo_programatico, periodo letivo, professor e disciplina
     public function periodo_letivo()
