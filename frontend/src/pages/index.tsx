@@ -5,6 +5,7 @@ import { QueryGrades } from "./ConsultaNotas";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import { DashboardAluno } from "./DashboardAluno";
 import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
+import { AlteraNotaProfessor} from "./AlteraNotaProfessor";
 
 export const Pages = {
   Login,
@@ -14,4 +15,5 @@ export const Pages = {
   ScreenReviewApproval,
   DashboardAluno,
   AtribuirDisciplinasProfessor,
+  AlteraNotaProfessor,
 };
