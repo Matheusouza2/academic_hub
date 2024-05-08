@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class PeriodoLetivo extends Model
 {
     use HasFactory;
-    protected $table = "periodo_letivo";
 
+    protected $table = 'periodo_letivo';
     protected $fillable = [
         'id',
-        'descricao',
-        'dataInicio',
-        'dataTermino',
+        'ano_semestre',
+        'semestre',
+        'inicio',
+        'fim'
     ];
 
     //cast do campo dataInicio e dataTermino para um valor date
