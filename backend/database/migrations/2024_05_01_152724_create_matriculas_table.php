@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('disciplina_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas'); //cada matricula esta associada a um aluno
             $table->unsignedBigInteger('turma_id');
-            $table->foreign('turma_id')->references('id')->on('turmas'); //cada matricula tem uma turma
+            $table->foreign('turma_id')->references('id')->on('turma'); //cada matricula tem uma turma
             $table->timestamps();
         });
     }

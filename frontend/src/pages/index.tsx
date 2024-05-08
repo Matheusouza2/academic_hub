@@ -8,6 +8,7 @@ import { DashboardAluno } from "./DashboardAluno";
 import { ListSubjectsByTeacher } from "./ListSubjectsByTeacher"
 import { ClassRegistration } from "./ClassRegistration";
 import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
+import { AlteraNotaProfessor} from "./AlteraNotaProfessor";
 
 export const Pages = {
   Login,
@@ -17,6 +18,8 @@ export const Pages = {
   QueryGrades,
   ScreenReviewApproval,
   DashboardAluno,
+  AtribuirDisciplinasProfessor,
+  AlteraNotaProfessor,
   ListSubjectsByTeacher,
   ClassRegistration,
   AtribuirDisciplinasProfessor

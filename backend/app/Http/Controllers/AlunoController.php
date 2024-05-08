@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Disciplina;
 use App\Models\Matriculas;
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -11,7 +12,6 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
         dd($request->aluno);
-        return response()->json(['message' => 'aluno cadastrado com sucesso !'], 200);
     }
 
     public function availableSubjects(Request $resquest, int $id)

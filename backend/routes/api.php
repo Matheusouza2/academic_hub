@@ -58,6 +58,19 @@ Route::prefix('v1')->group(function () {
     Route::prefix('disciplinas')->group(function () {
         Route::post('store', [DisciplinaController::class, 'store']);
     });
+    Route::prefix('aluno')->group(function () {
+        Route::get('/notas/show/{id}', [NotaController::class, 'showGrades']);
+    });
+
+    Route::prefix('aulas')->group(function () {
+        Route::post('/criar', [AulasController::class, 'store']);
+    });
+
+    Route::post('login', [UsuarioController::class, 'validateLogin']);
+
+    Route::prefix('disciplinas')->group(function () {
+        Route::post('store', [DisciplinaController::class, 'store']);
+    });
 
     Route::prefix('coordenador')->group(function () {
         Route::post('store', [CoordenadorController::class, 'store']);
