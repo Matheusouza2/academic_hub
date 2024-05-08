@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('disciplinas', function (Blueprint $table) {
-            $table->unsignedBigInteger('perido_letivo_id');
-            $table->foreign('perido_letivo_id')->references('id')->on('periodo_letivo');
+            $table->unsignedBigInteger('periodo_letivo_id');
+            $table->foreign('periodo_letivo_id')->references('id')->on('periodo_letivo');
         });
     }
 

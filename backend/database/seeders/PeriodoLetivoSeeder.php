@@ -14,14 +14,12 @@ class PeriodoLetivoSeeder extends Seeder
     public function run(): void
     {
         PeriodoLetivo::create([
-
-            'descricao' => 'Período Letivo 1',
+            'descricao' => '2024.2',
             'dataInicio' => '2024-06-01',
             'dataTermino' => '2024-12-15',
-
         ]);
         PeriodoLetivo::create([
-            'descricao' => 'Período Letivo 2',
+            'descricao' => "2025.1",
             'dataInicio' => '2025-02-01',
             'dataTermino' => '2025-05-15',
         ]);

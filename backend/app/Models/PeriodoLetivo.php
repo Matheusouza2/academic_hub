@@ -8,18 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PeriodoLetivo extends Model
 {
     use HasFactory;
-<<<<<<< Updated upstream
-    protected $table = "periodo_letivo";
-
-    protected $fillable = [
-        'id',
-        'descricao',
-        'dataInicio' => 'date',
-        'dataTermino' => 'date',
-    ];
-=======
-
-
     protected $table = 'periodo_letivo';
     protected $fillable = [
         'id',
@@ -28,6 +16,4 @@ class PeriodoLetivo extends Model
         'inicio',
         'fim'
     ];
-
->>>>>>> Stashed changes
 }

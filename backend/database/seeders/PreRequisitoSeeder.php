@@ -2,18 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Models\Aluno as ModelsAluno;
+use App\Models\PreRequisitos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AlunoSeeder extends Seeder
+class PreRequisitoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        ModelsAluno::create();
-        ModelsAluno::create();
+        PreRequisitos::create([
+            "disciplina_id" => 2,
+            "pre_requisito_id" => 1,
+        ]);
     }
 }

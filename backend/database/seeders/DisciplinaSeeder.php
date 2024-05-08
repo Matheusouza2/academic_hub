@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Disciplina;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DisciplinaSeeder extends Seeder
@@ -14,7 +13,6 @@ class DisciplinaSeeder extends Seeder
     public function run(): void
     {
         Disciplina::create([
-
             'nome' => 'Matemática Discreta',
             'sigla' => 'MAT',
             'codigo' => 'MAT101',
@@ -23,7 +21,7 @@ class DisciplinaSeeder extends Seeder
             'ementa' => 'Estudo de conceitos matemáticos avançados.',
             'curso_id' => 1,
             'ativa' => true,
-
+            'periodo_letivo_id' => 2,
         ]);
 
         Disciplina::create([
@@ -34,7 +32,8 @@ class DisciplinaSeeder extends Seeder
             'ch_pratica' => 30,
             'ementa' => 'Estudo de conceitos matemáticos avançados.',
             'curso_id' => 1,
-            'ativa' => true,
+            'ativa' => false,
+            'periodo_letivo_id' => 1,
         ]);
     }
 }
