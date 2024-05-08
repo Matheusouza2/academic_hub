@@ -19,4 +19,6 @@ class PeriodoLetivo extends Model
         'fim'
     ];
 
+    //cast do campo dataInicio e dataTermino para um valor date
+    protected $casts = ['dataInicio'=>'date', 'dataTermino'=>'date'];
 }

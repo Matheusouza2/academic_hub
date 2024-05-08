@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { AppIcons } from "../assets/exports";
 import { Page } from "./Page";
+import { api } from "../services/api";
 
 export function CreateSubjects() {
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (data: object) => {
-    console.log('subject data =>', data)
+  const onSubmit = (data) => {
+    api.post(`/v1/disciplinas/store`, data)
   }
 
   return (
@@ -22,7 +23,7 @@ export function CreateSubjects() {
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
               <label htmlFor="name" className="text-gray-900">Nome</label>
-              <input {...register('name')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome da disciplina" />
+              <input {...register('nome')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="name" placeholder="Nome da disciplina" />
             </div>
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
@@ -32,23 +33,23 @@ export function CreateSubjects() {
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
               <label htmlFor="code" className="text-gray-900">Código</label>
-              <input {...register('code')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Código da disciplina" />
+              <input {...register('codigo')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="code" placeholder="Código da disciplina" />
             </div>
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
               <label htmlFor="ch_teory" className="text-gray-900">Carga horária teórica</label>
-              <input {...register('ch_teory')} type="number" min={0} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Carga horária teórica da disciplina" />
+              <input {...register('ch_teorica')} type="number" min={0} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Carga horária teórica da disciplina" />
             </div>
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
               <label htmlFor="ch_pratical" className="text-gray-900">Carga horária prática</label>
-              <input {...register('ch_pratical')} type="number" min={0} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_pratical" placeholder="Carga horária prática da disciplina" />
+              <input {...register('ch_pratica')} type="number" min={0} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_pratical" placeholder="Carga horária prática da disciplina" />
             </div>
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
-              <label htmlFor="course" className="text-gray-900">Curso</label>
-              <select {...register('course')} id="course" name="Curso" className="w-full h-[47px] bg-gray-500 rounded-md px-2 text-gray-900">
-                <option value="" selected>--- Cursos ---</option>
+              <label htmlFor="curso_id" className="text-gray-900">Curso</label>
+              <select {...register('curso_id')} id="curso_id" name="curso_id" className="w-full h-[47px] bg-gray-500 rounded-md px-2 text-gray-900">
+                <option value="1" selected>--- Cursos ---</option>
               </select>
             </div>
 
@@ -59,7 +60,7 @@ export function CreateSubjects() {
           </div>
 
           <div className="w-full flex justify-end mt-10 lg:mt-20 pr-6">
-            <button type="button" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-green text-white py-2 px-4">
+            <button type="submit" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-green text-white py-2 px-4">
               <img src={AppIcons.disk} alt="Disquete" />
               Salvar
             </button>
