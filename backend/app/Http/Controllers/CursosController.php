@@ -75,7 +75,7 @@ class CursosController extends Controller
             // Abaixo, também são verificados todos os nomes de curso existentes,
             // à exceção do nome do curso antes da atualização.
 
-            'nome' => ['required', "unique:cursos, nome, $curso->nome"],
+            'nome' => ['required', "unique:cursos,nome,$curso->nome"],
             'coordenador_id' => ['required', 'exists:professores,id'],
             'carga_horaria' => 'required',
             'sigla' => 'required'

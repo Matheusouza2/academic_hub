@@ -48,10 +48,6 @@ Route::prefix('v1')->group(function () {
     Route::post('/criar', [AulasController::class, 'store']);
   });
 
-  Route::delete('delete/{id}', [UsuarioController::class, 'destroy']);
-
-  Route::get('/list', [UsuarioController::class, 'show']);
-
   Route::post('login', [UsuarioController::class, 'validateLogin']);
 
   Route::prefix('disciplinas')->group(function () {
