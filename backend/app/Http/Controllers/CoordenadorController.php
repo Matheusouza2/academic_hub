@@ -6,6 +6,9 @@ use App\Models\Disciplina;
 use App\Models\DisciplinaProfessor;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
+use function Psy\debug;
 
 class CoordenadorController extends Controller
 {
@@ -28,21 +31,15 @@ class CoordenadorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
-        // Validar entrada
-        $validatedData = $request->validate([
-            'disciplinas_id' => 'required|exists:disciplinas,id',
-            'professores_id' => 'required|exists:professores,id',
-        ]);
-
+    public function store(Request $request)
+    {
         // Verificar se existe a disciplina requisitada no BD
         if (DisciplinaProfessor::where('disciplinas_id', $request->disciplinas_id)->exists()) {
+            Log::debug('Disciplina já atribuída a um professor');
             return response()->json([
                 'message' => 'Essa disciplina já foi atribuída a um professor'
             ], 400);
         }
-
-        // Criando Registro no BD
         try {
             DisciplinaProfessor::create([
                 'disciplinas_id' => $request->disciplinas_id,
@@ -51,7 +48,6 @@ class CoordenadorController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao atribuir disciplina ao professor',
-                'error' => $e->getMessage(),
             ], 500);
         }
 
