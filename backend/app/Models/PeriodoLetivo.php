@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PeriodoLetivo extends Model
 {
     use HasFactory;
-
-
     protected $table = 'periodo_letivo';
     protected $fillable = [
         'id',
@@ -18,7 +16,6 @@ class PeriodoLetivo extends Model
         'inicio',
         'fim'
     ];
-
     //cast do campo dataInicio e dataTermino para um valor date
-    protected $casts = ['dataInicio'=>'date', 'dataTermino'=>'date'];
+    protected $casts = ['dataInicio' => 'date', 'dataTermino' => 'date'];
 }

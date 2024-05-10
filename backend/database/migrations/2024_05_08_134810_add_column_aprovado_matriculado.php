@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periodo_letivo', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('ano_semestre');
-            $table->unsignedBigInteger('semestre');
-            $table->date('inicio');
-            $table->date('fim');
-            $table->timestamps();
+        Schema::table('matriculas', function (Blueprint $table) {
+            $table->boolean("aprovado")->after("turma_id");
         });
     }
 
