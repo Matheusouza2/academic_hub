@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+//
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Aluno;
 use App\Models\Disciplina;
@@ -18,7 +19,7 @@ class Matriculas extends Model
     protected $table = 'matriculas';
 
     //campos que podem ser atribuídos em massa
-    protected $fillable =['id','data_da_matricula', 'aluno_id', 'disciplina_id', 'turma_id'];
+    protected $fillable = ['id', 'nro_matricula', 'data_da_matricula', 'aluno_id', 'disciplina_id', 'turma_id', 'aprovado'];
 
     //função que define o relacionamento entre matricula e aluno do tipo pertence a
     public function alunos()
@@ -37,5 +38,4 @@ class Matriculas extends Model
     {
         return $this->belongsTo(Turma::class, 'turma_id', 'id');
     }
-
 }

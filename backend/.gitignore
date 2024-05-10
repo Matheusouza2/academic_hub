@@ -19,4 +19,4 @@ yarn-error.log
 /.vscode
 composer-lock.json
 package-lock.json
-makefile
+composer.lock
