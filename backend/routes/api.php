@@ -26,8 +26,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::prefix('v1')->group(function () {
+    /**
+    * Rota responsável pelo LOGIN
+    */
+    Route::post('login', [UsuarioController::class, 'validateLogin']);
+  
+   /**
+   *  Rotas para o controller de Usuário
+   */
     Route::prefix('user')->group(function () {
         Route::patch('/edit/{usuario}', [UsuarioController::class, 'update']);
         Route::post('/cadastrar', [UsuarioController::class, 'store']);
@@ -35,44 +42,40 @@ Route::prefix('v1')->group(function () {
         Route::get('/list', [UsuarioController::class, 'show']);
     });
 
+   /**
+   * Rotas para o controller de Cursos
+   */
     Route::prefix('cursos')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
         Route::post('update/{curso}', [CursosController::class, 'update']);
     });
-
+    
+    /**
+    * Rotas para o controller de Alunos
+    */
     Route::prefix('aluno')->group(function () {
         Route::get('/notas/show/{id}', [NotaController::class, 'showGrades']);
         Route::get('/{id}/disciplinas-disponiveis', [AlunoController::class, 'availableSubjects']);
     });
-
+    
+    /**
+    * Rotas para o controller de Aulas
+    */
     Route::prefix('aulas')->group(function () {
         Route::post('/criar', [AulasController::class, 'store']);
     });
-
-    Route::delete('delete/{id}', [UsuarioController::class, 'destroy']);
-
-    Route::get('/list', [UsuarioController::class, 'show']);
-
-    Route::post('login', [UsuarioController::class, 'validateLogin']);
-
+    
+    /**
+    * Rotas para o controller de Disciplinas 
+    */
     Route::prefix('disciplinas')->group(function () {
         Route::post('store', [DisciplinaController::class, 'store']);
     });
-    Route::prefix('aluno')->group(function () {
-        Route::get('/notas/show/{id}', [NotaController::class, 'showGrades']);
-    });
-
-    Route::prefix('aulas')->group(function () {
-        Route::post('/criar', [AulasController::class, 'store']);
-    });
-
-    Route::post('login', [UsuarioController::class, 'validateLogin']);
-
-    Route::prefix('disciplinas')->group(function () {
-        Route::post('store', [DisciplinaController::class, 'store']);
-    });
-
+   
+    /**
+    * Rotas para o controller de Coordenador
+    */
     Route::prefix('coordenador')->group(function () {
-        Route::post('store', [CoordenadorController::class, 'store']);
+      Route::post('/atribuir-diciplinas', [CoordenadorController::class, 'store']);
     });
 });
