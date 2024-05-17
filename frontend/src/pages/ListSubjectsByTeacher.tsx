@@ -26,20 +26,20 @@ export function ListSubjectsByTeacher() {
                 {/* flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl */}
                 <div className="">
                     <table className="table-auto divide-y divide-gray-200 max-w-screen-md">
-                        <thead className="bg-gray-200">
+                        <thead className="bg-gray-200 ">
                             <tr>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700">Código</th>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700">Nome</th>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700">Detalhes</th>
+                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Código</th>
+                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Nome</th>
+                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="px-4 py-2 text-center whitespace-nowrap">
+                                <td className="px-4 py-2 text-center whitespace-nowrap ">
                                     <div className="w-full flex justify-center"> #CC_COMP12</div>
                                 </td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap">Matématica Discreta</td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap">
+                                <td className="px-4 py-2 text-center whitespace-nowrap ">Matématica Discreta</td>
+                                <td className="px-4 py-2 text-center whitespace-nowrap ">
                                     <button className="text-white bg-green p-2 mr-3 lg:mr-5 xl:mr-8 rounded-md" title="Aprovar Plano" onClick={() => setModal(true)}>
                                         <MdOutlineContentPasteSearch />
                                     </button>
