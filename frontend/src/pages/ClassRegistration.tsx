@@ -57,7 +57,7 @@ export function ClassRegistration() {
                     </div>
 
                     <div className="w-full flex justify-end mt-10 lg:mt-20">
-                        <button type="submit" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-green text-white py-2 px-4">
+                        <button type="button" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-[#22C55E] text-white py-2 px-4">
                             <img src={AppIcons.disk} alt="Disquete" />
                             Salvar
                         </button>

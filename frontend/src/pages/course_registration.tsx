@@ -37,7 +37,7 @@ export function Course_registration() {
                             </div>
                         </div>
 
-                        <button type="submit" className="self-end mt-auto w-[264px] hover:opacity-90 transition-all flex items-center justify-center gap-2 rounded-md bg-green text-white py-2">
+                        <button type="submit" className="self-end mt-auto w-[264px] hover:opacity-90 transition-all flex items-center justify-center gap-2 rounded-md bg-[#22C55E] text-white py-2">
                             <img src={AppIcons.disk} alt="Disquete" />
                             Salvar
                         </button>
