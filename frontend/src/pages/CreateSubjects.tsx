@@ -6,8 +6,8 @@ import { api } from "../services/api";
 export function CreateSubjects() {
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (data) => {
-    api.post(`/v1/disciplinas/store`, data)
+  const onSubmit = (data: any) => {
+    api.post(`/v1/disciplina/store`, data)
   }
 
   return (
