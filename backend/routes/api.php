@@ -31,7 +31,7 @@ Route::prefix('v1')->group(function () {
     * Rota responsável pelo LOGIN
     */
     Route::post('login', [UsuarioController::class, 'validateLogin']);
-  
+
    /**
    *  Rotas para o controller de Usuário
    */
@@ -49,7 +49,7 @@ Route::prefix('v1')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
         Route::post('update/{curso}', [CursosController::class, 'update']);
     });
-    
+
     /**
     * Rotas para o controller de Alunos
     */
@@ -57,21 +57,21 @@ Route::prefix('v1')->group(function () {
         Route::get('/notas/show/{id}', [NotaController::class, 'showGrades']);
         Route::get('/{id}/disciplinas-disponiveis', [AlunoController::class, 'availableSubjects']);
     });
-    
+
     /**
     * Rotas para o controller de Aulas
     */
     Route::prefix('aulas')->group(function () {
         Route::post('/criar', [AulasController::class, 'store']);
     });
-    
+
     /**
-    * Rotas para o controller de Disciplinas 
+    * Rotas para o controller de Disciplinas
     */
     Route::prefix('disciplinas')->group(function () {
         Route::post('store', [DisciplinaController::class, 'store']);
     });
-   
+
     /**
     * Rotas para o controller de Coordenador
     */

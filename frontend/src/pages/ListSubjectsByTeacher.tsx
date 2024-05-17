@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Page } from "./Page";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
+import { FaClipboardList } from "react-icons/fa";
 import { DialogSubject } from "../components/DialogSubject";
 
 
@@ -17,30 +18,35 @@ export function ListSubjectsByTeacher() {
         }
     ]
 
-
     return (
         <Page typeSidebar="teacher">
 
-            <div className="flex flex-col h-[90%] gap-10">
-                <h1 className="text-4xl font-bold">Disciplinas do Período</h1>
+            <div className="flex flex-col h-[90%] gap-10 p-4 sm:p-6">
+                <h1 className="text-2xl sm:text-4xl font-bold drop-shadow">Disciplinas do Período</h1>
                 {/* flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl */}
-                <div className="">
-                    <table className="table-auto divide-y divide-gray-200 max-w-screen-md">
-                        <thead className="bg-gray-200 ">
+                <div className="border-[0.2px] border-solid border-[#cacaca] rounded-md shadow-md">
+                    <table className="table-auto divide-y divide-gray-200 w-full">
+                        <thead className="bg-gray-200">
                             <tr>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Código</th>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Nome</th>
-                                <th className="px-4 py-2 bg-gray-200 text-gray-700 ">Detalhes</th>
+                                <th className=" px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-base font-bold bg-gray-200 text-[#4d4d4d] ">Presenças</th>
+                                <th className=" px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-base font-bold bg-gray-200 text-[#4d4d4d]">Código</th>
+                                <th className=" px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-base font-bold bg-gray-200 text-[#4d4d4d]">Nome</th>
+                                <th className=" px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-base font-bold bg-gray-200 text-[#4d4d4d]">Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="px-4 py-2 text-center whitespace-nowrap ">
-                                    <div className="w-full flex justify-center"> #CC_COMP12</div>
+                                <td className="py-2 text-center bg-[#e6f0ffe3]">
+                                    <button className="text-white bg-[#3A71BE] p-1 sm:p-2 rounded-md items-center" title="Aprovar Plano">
+                                        <FaClipboardList />
+                                    </button>
                                 </td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap ">Matématica Discreta</td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap ">
-                                    <button className="text-white bg-green p-2 mr-3 lg:mr-5 xl:mr-8 rounded-md" title="Aprovar Plano" onClick={() => setModal(true)}>
+                                <td className="px-2 sm:px-4 py-1 sm:py-2 text-center whitespace-nowrap bg-[#e6f0ffe3]">
+                                    <div className="w-full flex justify-center text-sm sm:text-base"> #CC_COMP12</div>
+                                </td>
+                                <td className="px-2 sm:px-4 py-1 sm:py-2 text-center whitespace-nowrap bg-[#e6f0ffe3] text-sm sm:text-base">Matématica Discreta</td>
+                                <td className=" py-2 text-center whitespace-nowrap bg-[#e6f0ffe3]">
+                                    <button className="text-white bg-[#22C55E] p-1 sm:p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => setModal(true)}>
                                         <MdOutlineContentPasteSearch />
                                     </button>
                                 </td>
