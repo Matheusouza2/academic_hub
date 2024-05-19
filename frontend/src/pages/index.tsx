@@ -9,6 +9,7 @@ import { DashboardAluno } from "./DashboardAluno";
 import { ListCursos } from "./ListCursos";
 import { ListSubjectsByTeacher } from "./ListSubjectsByTeacher";
 import { Login } from "./Login";
+import { PresencaAlunos } from "./PresencaAlunos";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 
 export const Pages = {
@@ -23,5 +24,6 @@ export const Pages = {
   AlteraNotaProfessor,
   ListSubjectsByTeacher,
   ClassRegistration,
-  AltCurso
+  AltCurso,
+  PresencaAlunos
 };
