@@ -37,7 +37,7 @@ class AulasController extends Controller
         ]);
 
         $aula = Aulas::create([
-            'assunto' => $request->nome,
+            'assunto' => $request->assunto,
             'data_aula' => $request->data_aula,
             'professor_id' => $request->professor_id,
             'disciplina_id' => $request->disciplina_id,
