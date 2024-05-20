@@ -10,6 +10,7 @@ import { ListCursos } from "./ListCursos";
 import { ListSubjectsByTeacher } from "./ListSubjectsByTeacher";
 import { Login } from "./Login";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
+import { AlterarDisciplina } from "./AlterarDisciplina";
 
 export const Pages = {
   Login,
@@ -23,5 +24,6 @@ export const Pages = {
   AlteraNotaProfessor,
   ListSubjectsByTeacher,
   ClassRegistration,
-  AltCurso
+  AltCurso,
+  AlterarDisciplina
 };
