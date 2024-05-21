@@ -1,12 +1,27 @@
 import { Page } from "./Page";
 import { AppIcons } from "../assets/exports";
 import { useForm } from "react-hook-form";
-
+import { api } from "../services/api";
 
 export function ClassRegistration() {
     const { register, handleSubmit } = useForm()
 
+    var path = window.location.href
+    var disciplina_id = parseInt(path[path.length - 1], 10)
+
+    if (isNaN(disciplina_id)) {
+        disciplina_id = -1
+    }
+
     const onSubmit = (data: any) => {
+        var dataContent = {
+            'professor_id': localStorage.getItem('professor_id'),
+            'disciplina_id': disciplina_id,
+            'data_aula': data.completion_date,
+            'assunto': data.content,
+        }
+
+        api.post(`/v1/aulas/criar`, dataContent).then(res => console.log(res))
         console.log('class data =>', data)
     }
 
@@ -14,17 +29,16 @@ export function ClassRegistration() {
         <Page typeSidebar="teacher">
             <div className="flex flex-col h-full gap-6">
                 <h1 className="text-4xl font-bold">Registro de Aula</h1>
-                
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl">
                     <div className="flex gap-8">
                         <div className="flex flex-col">
                             <label htmlFor="planned-date" className="text-gray-900">Data planejada:</label>
-                            <input {...register('planned-date')} type="date" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="planned-date"/>
+                            <input {...register('planned-date')} type="date" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="planned-date" />
                         </div>
 
                         <div className="flex flex-col max-w-[220px]">
-                            <label htmlFor="completion-date" className="text-gray-900">Data de realização:</label>
-                            <input {...register('completion-date')} type="date" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="completion-date"/>
+                            <label htmlFor="completion_date" className="text-gray-900">Data de realização:</label>
+                            <input {...register('completion_date')} type="date" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="completion-date" />
                         </div>
 
                         <div className="flex flex-col flex-1 max-w-[220px]">
@@ -47,7 +61,7 @@ export function ClassRegistration() {
                             <img src={AppIcons.disk} alt="Disquete" />
                             Salvar
                         </button>
-                    </div> 
+                    </div>
                 </form>
             </div>
         </Page>
