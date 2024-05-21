@@ -6,11 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { toast, ToastContainer } from "react-toastify";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
+
 
 interface Professor {
 
@@ -165,25 +161,33 @@ export function AtribuirDisciplinasProfessor() {
               Cancelar
             </Button>
           </DialogActions>
+
         </Dialog>
 
         <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
 
-          <DialogTitle>Disciplinas do Professor</DialogTitle>
-            <TableContainer>
-              <Table aria-label="simple table">
-                <TableBody>
-                  {disciplinas.filter(dis => dis.id == (String)(professorSelecionado?.disciplinas.filter(profdis => profdis.id))).map((disciplinas) => (
+          <DialogContent>
 
-                      <TableRow key={disciplinas.id}>
-                        <TableCell align="center"> {disciplinas.nome} </TableCell>
-                      </TableRow>
-                
-                    ))}
+            <table align="center" className="text-center">
+
+              <thead> 
+                <tr><h1 className="text-xl mb-3 border-b-2">Disciplinas do Professor:</h1></tr>
+              </thead>
+
+              <tbody className="text-base"> 
+                 
+                {disciplinas.filter(dis => dis.id == (String)(professorSelecionado?.disciplinas.filter(profdis => profdis.id))).map((disciplinas) => (
+
+                  <tr key={disciplinas.id}> {disciplinas.nome} </tr> 
+
+                ))}
                   
-                </TableBody>
-              </Table>
-            </TableContainer>
+              </tbody>
+            </table>
+
+          </DialogContent>
+
+
           <DialogActions>
             
             <Button onClick={() => setOpenPopup(false)} color="secondary" variant="outlined">Sair</Button>
