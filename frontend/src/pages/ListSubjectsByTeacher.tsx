@@ -4,12 +4,14 @@ import { PresencaAlunos } from "./PresencaAlunos";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { FaClipboardList } from "react-icons/fa";
 import { DialogSubject } from "../components/DialogSubject";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export function ListSubjectsByTeacher() {
-    const [dialog, setModal1] = useState(false);
-    const [list_presenca, setModal2] = useState(false)
+    
+    const [dialog, setDialog] = useState(false);
+    const [index, setIndex] = useState(0);
+
+    const navigate = useNavigate();
 
     const data = [
         {
@@ -18,92 +20,78 @@ export function ListSubjectsByTeacher() {
                 {
                     "nome": "Matemática Discreta",
                     "sigla": "MD",
-                    "ementa": "Conjuntos. Funções. Relações. Lógica Proposicional. Lógica de Predicados. Álgebra de Boole. Teoria dos Conjuntos. Teoria dos Grafos.",
+                    "ementa": "Introdução à Lógica Formal. Métodos de demonstração. Teoria ingênua dos conjuntos. Relações e funções. Ordem e equivalência. Cardinalidade. Indução. Teoria axiomática de conjuntos. Estruturas algébricas. Reticulados e álgebras booleanas. Indução. Recursividade e Relações de Recorrência.",
+                    "ch_teorica": 30,
+                    "ch_pratica": 60
+                },
+                {
+                    "nome": "Introdução a Programação",
+                    "sigla": "IP",
+                    "ementa": "Arquitetura de von Neumann; Introdução à linguagem C11; O paradigma imperativo; Conceito de variáveis e constantes; Tipos de dados simples: inteiro, caracter, e ponto flutuante; Programação estruturada; Estrutura sequencial; Expressões aritméticas; Expressões lógicas; Estrutura de seleção; Estrutura de repetição; Tipos de dados estruturados: arranjos, cadeia de caracteres, matrizes, enumerações, e uniões; Subprogramas: procedimentos e funções; Subprogramas recursivos. Arquivos e diretórios.",
+                    "ch_teorica": 30,
+                    "ch_pratica": 60
+                },
+                {
+                    "nome": "Algoritmos e Estruturas de Dados I",
+                    "sigla": "AED1",
+                    "ementa": "Tipo Ponteiro em C18; Alocação Dinâmica de Memória em C18; Tipos de Dados Abstratos; Pilhas; Filas; Filas de Prioridade; Listas Simplesmente Encadeadas; Listas Duplamente Encadeadas; Listas Circulares; Busca Aleatória; Busca Linear; Busca Binária; Busca Exponencial; Busca por Interpolação; Insertion Sort; Shell Sort; Bubble Sort; Merge Sort; Quicksort; Tabelas de Espalhamento.",
                     "ch_teorica": 30,
                     "ch_pratica": 60
                 }
-            ],
-
-            "lista_presenca": 
-            [
-                {
-                    "Matemática Discreta": [
-                        {
-                            "n_matricula": 207463128,
-                            "nome": "Emanuel a Mídia de San Martin",
-                            "faltas": 5
-                        },
-                        {
-                            "n_matricula": 206241477,
-                            "nome": "Manoel Nogueira Mão de Pedra",
-                            "faltas": 3
-                        },
-                        {
-                            "n_matricula": 205781687,
-                            "nome": "Athams Menezes Capilé Pai",
-                            "faltas": 0
-                        },
-                        {
-                            "n_matricula": 201745915,
-                            "nome": "Lucas Allan Terra Nova",
-                            "faltas": 10
-                        },
-                        {
-                            "n_matricula": 207475475,
-                            "nome": "Hellen Capile Junior",
-                            "faltas": 6
-                        }
-                    ]
-                } 
             ]
-            
         }
     ]
 
-
+    const redirect = (index: any) => {
+        navigate('/professor/listagem-disciplinas/listagem-presenca', {
+            state: {
+                disciplinaType: data[0].disciplinas[index].nome
+            }
+        })
+    }
 
     return (
         <Page typeSidebar="teacher">
 
             <div className="flex flex-col h-[90%] gap-10">
-                <h1 className="text-4xl font-bold drop-shadow">Disciplinas do Período</h1>
+                <h1 className="text-[40px] font-bold mb-3">Disciplinas do Período</h1>
                 {/* flex flex-col w-full h-full gap-6 p-6 bg-white rounded-md shadow-2xl */}
                 <div className="border-[0.2px] border-solid border-[#cacaca] rounded-md shadow-md">
                     <table className="table-auto divide-y divide-gray-200 w-full">
                         <thead className="bg-gray-200">
                             <tr>
-                                <th className="px-4 py-2 font-bold bg-gray-200 text-[#4d4d4d]">Presenças</th>
-                                <th className="px-4 py-2 font-bold bg-gray-200 text-[#4d4d4d]">Código</th>
-                                <th className="px-4 py-2 font-bold bg-gray-200 text-[#4d4d4d]">Nome</th>
-                                <th className="px-4 py-2 font-bold bg-gray-200 text-[#4d4d4d]">Detalhes</th>
+                                <th className="py-5 font-extrabold text-[18px] bg-[#3A71BE] text-[#fefefe]">Presenças</th>
+                                <th className="py-5 font-extrabold text-[18px] bg-[#3A71BE] text-[#fefefe]">Código</th>
+                                <th className="py-5 font-extrabold text-[18px] bg-[#3A71BE] text-[#fefefe]">Nome</th>
+                                <th className="py-5 font-extrabold text-[18px] bg-[#3A71BE] text-[#fefefe]">Detalhes</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td className="py-2 text-center bg-[#e6f0ffe3]">
-                                    <Link to="/professor/listagem-disciplinas/listagem-presenca" target="_blank" rel="noopener noreferrer">
-                                        <button className="text-white bg-[#3A71BE] p-2 rounded-md items-center" title="Aprovar Plano">
-                                            <FaClipboardList />
-                                        </button>
-                                    </Link>
-                                </td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap bg-[#e6f0ffe3]">
-                                    <div className="w-full flex justify-center"> #CC_COMP12</div>
-                                </td>
-                                <td className="px-4 py-2 text-center whitespace-nowrap bg-[#e6f0ffe3]">Matématica Discreta</td>
-                                <td className=" py-2 text-center whitespace-nowrap bg-[#e6f0ffe3]">
-                                    <button className="text-white bg-[#22C55E] p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => setModal1(true)}>
-                                        <MdOutlineContentPasteSearch />
-                                    </button>
-                                </td>
-                            </tr>
+                        
+                        <tbody  className="divide-y">
+                            {data[0].disciplinas.map((value, index) => (
+                                    <tr key={index}>
+                                        <td className="py-4 text-center bg-[#fefefe]">
+                                            <button className="text-white bg-[#3A71BE] p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => redirect(index)}>
+                                                <FaClipboardList />
+                                            </button>
+                                        </td>
+                                        <td className="text-center whitespace-nowrap bg-[#fefefe]">
+                                            <div className="flex text-[18px] justify-center"> #CC_COMP12</div>
+                                        </td>
+                                        <td className="text-center text-[18px] whitespace-nowrap bg-[#fefefe]">{value.nome}</td>
+                                        <td className="text-center whitespace-nowrap bg-[#fefefe]">
+                                            <button className="text-white bg-[#22C55E] p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => {setDialog(true); setIndex(index)}}>
+                                                <MdOutlineContentPasteSearch />
+                                            </button>
+                                        </td>
+                                    </tr>
+                            ))}
                         </tbody>
+
                     </table>
                 </div>
             </div>
-
-            {list_presenca && <PresencaAlunos info={data[0].lista_presenca[0]["Matemática Discreta"][0]} setModal={setModal2} />}
-            {dialog && <DialogSubject info={data[0].disciplinas[0]} setModal={setModal1} />}
+            {dialog && <DialogSubject info={data[0].disciplinas[index]} setModal={setDialog} />}
         </Page>
     )
 }
