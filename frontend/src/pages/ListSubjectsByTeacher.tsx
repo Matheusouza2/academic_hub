@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Page } from "./Page";
-import { PresencaAlunos } from "./PresencaAlunos";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { FaClipboardList } from "react-icons/fa";
 import { DialogSubject } from "../components/DialogSubject";
