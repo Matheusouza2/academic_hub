@@ -30,7 +30,7 @@ export function FormularioCurso({ tipo }: FormularioCursoProps){
                 </div>
                 <div className="flex flex-col flex-1 max-w-[264px]">
                     <label htmlFor="sigla" className="text-gray-900">Carga Horária</label>
-                    <input {...register('carga-hararia')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
+                    <input {...register('carga-horaria')} type="text" className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="sigla" placeholder="000 Horas" />
                 </div>
                 <div className="flex flex-col flex-1 max-w-[264px]">
                     <label htmlFor="code" className="text-gray-900">Coordenador</label>
