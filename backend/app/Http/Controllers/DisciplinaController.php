@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Disciplina;
 use Illuminate\Http\Request;
+use App\Models\Curso;
 
 class DisciplinaController extends Controller
 {
@@ -60,4 +61,18 @@ class DisciplinaController extends Controller
             'disciplina' => $disciplina
         ]);
     }
+
+    public function listarDiciplinaPorCurso($curso_id)
+{
+
+    $curso = Curso::find($curso_id);
+
+    if (!$curso) {
+        return response()->json(['message' => 'Curso não encontrado'], 404);
+    }
+
+    $disciplinas = Disciplina::where('curso_id', $curso_id)->get()->toArray();
+
+    return response()->json($disciplinas);
+}
 }
