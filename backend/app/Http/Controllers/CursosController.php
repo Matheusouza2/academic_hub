@@ -51,9 +51,12 @@ class CursosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+
+     // funcao para listar os cursos
+    public function show()
     {
-        //
+        $cursos = Curso::paginate(20);
+        return response()->json($cursos);
     }
 
     /**
