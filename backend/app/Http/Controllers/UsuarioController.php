@@ -50,7 +50,7 @@ class UsuarioController extends Controller
     {
 
         $usuario = Usuario::join('endereco', 'endereco.id', 'usuario.endereco')->join('tipo_usuario', 'tipo_usuario.id', 'usuario.tipo_usuario')->paginate(20);
-        //return ($usuario);
+        return ($usuario);
     }
 
     public function edit(string $id)
