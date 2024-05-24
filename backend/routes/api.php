@@ -48,6 +48,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('cursos')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
         Route::post('update/{curso}', [CursosController::class, 'update']);
+        Route::get('/list-curso', [CursosController::class, 'show']);
     });
 
     /**
