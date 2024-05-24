@@ -35,7 +35,7 @@ export function DialogSubject({ setModal, info }: Props) {
                 <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                     <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl p-6">
 
-                        <div className="flex justify-between">
+                        <div className="flex justify-between mt-3">
                             <h1 className="text-4xl font-bold">Plano de Ensino de Disciplina</h1>
                             <button className="text-white bg-red px-3 rounded-md" onClick={close}><MdClose /></button>
                         </div>
@@ -52,7 +52,7 @@ export function DialogSubject({ setModal, info }: Props) {
 
                         <h2 className="text-xl font-semibold mt-4 text-gray-800">Carga Horária</h2>
                         <p><strong>Teórica: </strong>{info.ch_teorica}</p>
-                        <p><strong>Prática: </strong>{info.ch_pratica}</p>
+                        <p className="mb-3"><strong>Prática: </strong>{info.ch_pratica}</p>
 
                     </div>
                 </div>
