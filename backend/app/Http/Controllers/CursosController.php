@@ -7,25 +7,17 @@ use App\Models\Curso;
 
 class CursosController extends Controller
 {
-    /**
-     * Ex.
-     */
+    
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
 
     public function store(Request $request)
     {
@@ -48,60 +40,49 @@ class CursosController extends Controller
         // uma resposta json é retornada e o código de status 201 é retornado para indicar que um novo curso foi criado
         return response()->json(['message' => 'Curso criado com sucesso', 'curso' => $curso], 201);
     }
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         //
     }
+    
+    public function update(Request $request, $id)
+{
+    try {
+        // Encontre o curso pelo id
+        $curso = Curso::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Curso $curso)
-    {
-        // Para assegurar que as informações estejam nos conformes:
+        // Verifique se o curso existe
+        if (!$curso) {
+            return response()->json(['message' => 'Curso não encontrado.'], 404);
+        }
+
+        // Validação dos dados de atualização
         $request->validate([
-            // Nome é um atributo não facultativo;
-            // Abaixo, também são verificados todos os nomes de curso existentes,
-            // à exceção do nome do curso antes da atualização.
-
-            'nome' => ['required', "unique:cursos,nome,$curso->nome"],
-            'coordenador_id' => ['required', 'exists:professores,id'],
+            'nome' => 'required|unique:cursos,nome,' . $curso->id, // O campo 'nome' é obrigatório e deve ser único na tabela 'cursos', exceto para o curso atual.
+            'coordenador_id' => ['required', 'exists:professores,id'], // O campo 'coordenador_id' é obrigatório e deve existir como 'id' na tabela 'professores'.
             'carga_horaria' => 'required',
             'sigla' => 'required'
         ]);
 
-        // Em seguida, certificando-se de que o ID existe. Se não existir, este método encerrará prontamente
-        // e vai retornar erro 404. Senão, o fluxo de execução continuará.
+        // Atualização dos dados do curso
+        $curso->update($request->all());
 
-        if (!$curso) {
-            return response()->json(['message' => 'A operação falhou por ID inexistente.'], 404);
-        }
+        return response()->json(['message' => 'Alteração de curso bem-sucedida.', 'curso' => $curso], 200);
 
-        // (A SER APRECIADO PELO PROFESSOR) $curso->update($request->validated());
-
-        $curso->nome = $request->nome;
-        $curso->coordenador_id = $request->coordenador_id;
-        $curso->carga_horaria = $request->carga_horaria;
-        $curso->sigla = $request->sigla;
-        $curso->save();
-
-        return response()->json(['message' => 'Alteração de curso bem-sucedida.'], 201);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Erro ao atualizar curso.', 'error' => $e->getMessage()], 500);
     }
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+
     public function destroy(string $id)
     {
         //
