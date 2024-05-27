@@ -9,7 +9,7 @@ export function Router() {
       <Route path="/cadastro-curso" element={<Pages.CadCurso />} />
       <Route path="/alterar-curso" element={<Pages.AltCurso/>} />
       <Route path='/revisao-plano-disciplina' element={<Pages.ScreenReviewApproval />} />
-      <Route path="/notas" element={<Pages.QueryGrades />} />
+      <Route path="/notas" element={<Pages.ConsultaNotas />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
       <Route path="/professor/listagem-disciplinas" element={<Pages.ListSubjectsByTeacher/>} />
       <Route path="/professor/listagem-disciplinas/listagem-presenca" element={<Pages.PresencaAlunos/>} />

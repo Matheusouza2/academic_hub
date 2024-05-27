@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nota;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Psy\Readline\Hoa\Console;
 
 class NotaController extends Controller
 {
@@ -67,7 +68,7 @@ class NotaController extends Controller
     public function showGrades(Request $request)
     {
         $grades = Nota::with("periodo_letivo:id,descricao")
-            ->with("disciplina:id,nome,ch_teorica,ch_pratica")
+            ->with("disciplina:id,nome,sigla,ch_teorica,ch_pratica")
             ->where("aluno_id", $request->id)
             ->get()
             ->setHidden(["created_at", "updated_at", "disciplina_id", "periodo_letivo_id", "aluno_id"]);
@@ -106,7 +107,8 @@ class NotaController extends Controller
                 "id" => $grade->id,
                 "nota" => $grade->nota,
                 "periodo_letivo" => $grade->periodo_letivo->descricao,
-                "disciplina" => $grade->disciplina->nome
+                "disciplina_nome" => $grade->disciplina->nome,
+                "disciplina_sigla" => $grade->disciplina->sigla
             ]);
         }
 
