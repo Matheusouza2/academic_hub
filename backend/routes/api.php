@@ -9,7 +9,7 @@ use App\Http\Controllers\CoordenadorController;
 use App\Http\Controllers\NotaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProfessorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,10 +47,17 @@ Route::prefix('v1')->group(function () {
    */
     Route::prefix('cursos')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
-        Route::post('update/{curso}', [CursosController::class, 'update']);
+        Route::put('/update/{id}', [CursosController::class, 'update']);
         Route::get('/list-curso', [CursosController::class, 'show']);
     });
 
+    /**
+     * Rotas para o Controller do Professor
+     */
+    Route::prefix('professor')->group(function () {
+        Route::post('store', [ProfessorController::class, 'store']);
+        Route::get('list', [ProfessorController::class, 'show']);
+    });
     /**
     * Rotas para o controller de Alunos
     */
