@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger("matricula");
-
-            $table->timestamps();
+        Schema::table('alunos', function (Blueprint $table) {
+            $table->unsignedBigInteger("usuario")->unsigned();
+            $table->foreign('usuario')->references('id')->on('usuario')->onDelete('cascade');
         });
     }
 
@@ -27,3 +25,4 @@ return new class extends Migration
         Schema::dropIfExists('alunos');
     }
 };
+
