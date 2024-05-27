@@ -125,7 +125,6 @@ export function AtribuirDisciplinasProfessor() {
             </Button>
           </DialogActions>
         </Dialog>
-
         <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
           <DialogContent>
             <table align="center" className="text-center">
