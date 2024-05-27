@@ -1,91 +1,59 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Page } from "./Page";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import { toast, ToastContainer } from "react-toastify";
-
-
-interface Professor {
-
-  siape: string;
-  nome: string;
-  disciplinas: Disciplina[];
-}
-
-interface Disciplina {
-
-  id: string;
-  nome: string;
-}
+import { ToastContainer, toast } from "react-toastify";
+import { useProfessorController } from "../controllers/AtribuirDisciplinasProfessorController";
+import { Professor } from "../interfaces/Professor";
+import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function AtribuirDisciplinasProfessor() {
+  const {
+    professores,
+    disciplinas,
+    carregando,
+    erro,
+    obterProfessores,
+    obterDisciplinas,
+    adicionarDisciplina
+  } = useProfessorController();
 
-  const [professores, setProfessores] = useState<Professor[]>([
-    { siape: "123", nome: "Professor 1", disciplinas: [] },
-    { siape: "456", nome: "Professor 2", disciplinas: [] },
-    { siape: "666", nome: "Professor 3", disciplinas: [] },
-  ]);
-
-  const [disciplinas] = useState<Disciplina[]>([
-    { id: "1", nome: "Matematica 1" },
-    { id: "2", nome: "Disciplina 2" },
-  ]);
-
-  const [disciplinaSelecionada, setDisciplinaSelecionada] = useState<Disciplina | null>(null);
+  const [disciplinaSelecionada, setDisciplinaSelecionada] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [professorSelecionado, setProfessorSelecionado] = useState<Professor | null>(null);
-  const [toastExibindo, setToastExibindo] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
-    if (disciplinaSelecionada && !disciplinas.includes(disciplinaSelecionada)) {
-      setDisciplinaSelecionada(null);
+    obterProfessores();
+    obterDisciplinas();
+  }, []);
+
+  const handleAdicionarDisciplina = () => {
+    if (professorSelecionado && disciplinaSelecionada) {
+      adicionarDisciplina(professorSelecionado.id, disciplinaSelecionada);
+      setOpen(false);
+    } else {
+      toast.error("Nenhuma disciplina ou professor selecionado");
     }
-  }, [disciplinas, disciplinaSelecionada]);
-
-  const adicionarDisciplina = (professor: Professor | null) => {
-    if (!disciplinaSelecionada || !professor) {
-      if (!toastExibindo) {
-        toast.error("Nenhuma disciplina ou professor selecionado", {
-          onClose: () => setToastExibindo(false),
-          onOpen: () => setToastExibindo(true),
-        });
-      }
-      return;
-    }
-
-    // Verificar se a disciplina já foi atribuída ao professor
-    if (professor.disciplinas.find((d) => d.id === disciplinaSelecionada.id)) {
-      if (!toastExibindo) {
-        toast.error("Disciplina já atribuída ao professor", {
-          onClose: () => setToastExibindo(false),
-          onOpen: () => setToastExibindo(true),
-        });
-      }
-      return;
-    }
-
-    const novoProfessor = {
-      ...professor,
-      disciplinas: [...professor.disciplinas, disciplinaSelecionada],
-    };
-
-    setProfessores(
-      professores.map((prof) =>
-        prof.siape === novoProfessor.siape ? novoProfessor : prof
-      )
-    );
-    setOpen(false);
   };
 
   const handleOpen = (professor: Professor) => {
     setProfessorSelecionado(professor);
+    setDisciplinaSelecionada(""); // Resetar a seleção de disciplina ao abrir o dialog
     setOpen(true);
   };
-  
-  const [openPopup, setOpenPopup] = useState(false);
+
+  if (carregando) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <Page>
@@ -101,9 +69,6 @@ export function AtribuirDisciplinasProfessor() {
           >
             <h2 className="text-xl font-semibold mb-2">{professor.nome}</h2>
             <p className="text-gray-700">SIAPE: {professor.siape}</p>
-            <p className="text-gray-700">
-              Disciplinas: {professor.disciplinas.length}
-            </p>
             <button
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
               onClick={() => handleOpen(professor)}
@@ -112,11 +77,14 @@ export function AtribuirDisciplinasProfessor() {
             </button>
 
             <button
-                className="mt-4 ml-4 bg-blue-500 text-white px-4 py-2 rounded"
-                onClick={() => setOpenPopup(true)}
-              >
-                Disciplinas do Professor
-              </button>
+              className="mt-4 ml-4 bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => {
+                setProfessorSelecionado(professor);
+                setOpenPopup(true);
+              }}
+            >
+              Disciplinas do Professor
+            </button>
           </div>
         ))}
         <Dialog
@@ -128,13 +96,8 @@ export function AtribuirDisciplinasProfessor() {
           <DialogContent>
             <select
               className="border-2 border-gray-400 rounded px-2 py-2"
-              onChange={(e) => {
-                const disciplinaId = e.target.value;
-                const disciplina = disciplinas.find(
-                  (d) => d.id === disciplinaId
-                );
-                setDisciplinaSelecionada(disciplina || null);
-              }}
+              onChange={(e) => setDisciplinaSelecionada(e.target.value)}
+              value={disciplinaSelecionada}
             >
               <option value="">Selecione uma disciplina</option>
               {disciplinas.map((disciplina) => (
@@ -147,7 +110,7 @@ export function AtribuirDisciplinasProfessor() {
           <DialogActions>
             <Button
               variant="outlined"
-              onClick={() => adicionarDisciplina(professorSelecionado)}
+              onClick={handleAdicionarDisciplina}
               color="primary"
               disabled={!disciplinaSelecionada}
             >
@@ -161,41 +124,24 @@ export function AtribuirDisciplinasProfessor() {
               Cancelar
             </Button>
           </DialogActions>
-
         </Dialog>
-
         <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-
           <DialogContent>
-
             <table align="center" className="text-center">
-
-              <thead> 
-                <tr><h1 className="text-xl mb-3 border-b-2">Disciplinas do Professor:</h1></tr>
+              <thead>
+                <tr>
+                  <th className="text-xl mb-3 border-b-2">Disciplinas do Professor:</th>
+                </tr>
               </thead>
-
-              <tbody className="text-base"> 
-                 
-                {disciplinas.filter(dis => dis.id == (String)(professorSelecionado?.disciplinas.filter(profdis => profdis.id))).map((disciplinas) => (
-
-                  <tr key={disciplinas.id}> {disciplinas.nome} </tr> 
-
-                ))}
-                  
+              <tbody className="text-base">
+              Back-End ainda nao implementado
               </tbody>
             </table>
-
           </DialogContent>
-
-
           <DialogActions>
-            
             <Button onClick={() => setOpenPopup(false)} color="secondary" variant="outlined">Sair</Button>
-
           </DialogActions>
-
         </Dialog>
-
       </div>
     </Page>
   );

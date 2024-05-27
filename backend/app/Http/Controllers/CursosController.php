@@ -40,10 +40,12 @@ class CursosController extends Controller
         // uma resposta json é retornada e o código de status 201 é retornado para indicar que um novo curso foi criado
         return response()->json(['message' => 'Curso criado com sucesso', 'curso' => $curso], 201);
     }
-    
-    public function show(string $id)
+
+     // funcao para listar os cursos
+    public function show()
     {
-        //
+        $cursos = Curso::paginate(20);
+        return response()->json($cursos);
     }
 
     
