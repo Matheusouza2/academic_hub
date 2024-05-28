@@ -5,22 +5,6 @@ import axios from "axios";
 
 export function ConsultaNotas() {
 
-  const disci = [
-    {
-      id: 1,
-      nome: "Matemática Discreta",
-      coordenador_id: 101,
-      carga_horaria: 60,
-      sigla: "MD",
-      professor: "Valdigleis Costa",
-      grades: [8, 9, 10],
-      finalGrade: 9,
-      average: 9,
-      status: "Reprovado",
-      faltas: 2,
-    }
-  ];
-
   const [expandedIndexes, setExpandedIndexes] = useState([]);
 
   const handleExpandClick = (index) => {
@@ -35,7 +19,7 @@ export function ConsultaNotas() {
 
   const[disciplines,setDisciplines] = useState([]);
 
-  const request = 2;
+  const request = useParams;
   const url = `/v1/notas/show/${request}`;
 
   useEffect(() => {
