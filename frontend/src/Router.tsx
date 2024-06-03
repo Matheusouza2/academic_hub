@@ -6,8 +6,7 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Pages.Login />} />
       <Route path="/cadastro-disciplinas" element={<Pages.CreateSubjects />} />
-      <Route path="/cadastro-curso/:curso_id" element={<Pages.CadCurso />} />
-      <Route path="/cadastro-curso/" element={<Pages.CadCurso />} />
+      <Route path="/cadastro-curso/:curso_id?" element={<Pages.CadCurso />} />
       <Route path='/revisao-plano-disciplina' element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.QueryGrades />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
