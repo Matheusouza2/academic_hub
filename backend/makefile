@@ -7,7 +7,7 @@ server:
 list:
 	php artisan list
 env:
-	cp .env.exemple .env
+	cp .env.example .env
 generate: env
 	php artisan key:generate
 up-db:

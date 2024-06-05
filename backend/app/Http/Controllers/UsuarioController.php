@@ -39,7 +39,7 @@ class UsuarioController extends Controller
             'sexo' => 'required|string|size:1',
             'tipo_usuario' => 'required|numeric'
         ]);
-
+        
         // recebe a validade e da o create
         Usuario::create($validated);
         return response()->json(["message" => "usuario cadastrado"], 200);
