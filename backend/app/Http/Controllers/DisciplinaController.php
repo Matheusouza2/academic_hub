@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Disciplina;
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\DisciplinaProfessor;
+use App\Models\Professor;
 
 class DisciplinaController extends Controller
 {
@@ -63,16 +65,29 @@ class DisciplinaController extends Controller
     }
 
     public function listarDiciplinaPorCurso($curso_id)
-{
+    {
 
-    $curso = Curso::find($curso_id);
+        $curso = Curso::find($curso_id);
 
-    if (!$curso) {
-        return response()->json(['message' => 'Curso não encontrado'], 404);
+        if (!$curso) {
+            return response()->json(['message' => 'Curso não encontrado'], 404);
+        }
+
+        $disciplinas = Disciplina::where('curso_id', $curso_id)->get()->toArray();
+
+        return response()->json($disciplinas);
     }
 
-    $disciplinas = Disciplina::where('curso_id', $curso_id)->get()->toArray();
+    public function listarDiciplinaPorProfessor($professor_id)
+    {
 
-    return response()->json($disciplinas);
-}
+        $disciplinas = DisciplinaProfessor::join('disciplinas','disciplinas.id','disciplines_professors.disciplinas_id')->where('professores_id', $professor_id)->get()->toArray();
+
+        if (count($disciplinas) == 0) {
+            return response()->json(['message' => 'Esse Professor não possui nenhuma disciplina vinculada a ele'], 404);
+        }
+
+        return response()->json(['message' => 'Disciplinas buscadas com sucesso', 'disciplinas' => $disciplinas], 200);
+    }
+
 }

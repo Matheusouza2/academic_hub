@@ -72,6 +72,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('disciplinas')->group(function () {
         Route::post('store', [DisciplinaController::class, 'store']);
         Route::get('lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorCurso']);
+        Route::get('professor/lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorProfessor']);
     });
 
     /**

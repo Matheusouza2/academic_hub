@@ -10,7 +10,7 @@ export function Router() {
       <Route path='/revisao-plano-disciplina' element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.QueryGrades />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
-      <Route path="/professor/listagem-disciplinas" element={<Pages.ListSubjectsByTeacher/>} />
+      <Route path="/professor/listagem-disciplinas/:professor_id" element={<Pages.ListSubjectsByTeacher/>} />
       <Route path="/professor/listagem-disciplinas/listagem-presenca" element={<Pages.PresencaAlunos/>} />
       <Route path="/registro-de-aula" element={<Pages.ClassRegistration/>} />
       <Route path="/AtribuirDisciplinasProfessor" element={<Pages.AtribuirDisciplinasProfessor/>} />

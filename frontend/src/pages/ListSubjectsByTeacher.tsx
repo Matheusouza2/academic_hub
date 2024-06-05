@@ -3,50 +3,27 @@ import { Page } from "./Page";
 import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { FaClipboardList } from "react-icons/fa";
 import { DialogSubject } from "../components/DialogSubject";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../services/api"
+import buscarDisciplinas from "../services/buscarDisciplinas";
 
 export function ListSubjectsByTeacher() {
     
     const [dialog, setDialog] = useState(false);
     const [index, setIndex] = useState(0);
+    const [disciplinas, setDisciplinas] = useState([]);
 
+    const { professor_id } = useParams();
+    
+    window.onload = async () => {
+        const data = await buscarDisciplinas(professor_id);
+        setDisciplinas(data?.disciplinas);
+    }
+    
     const navigate = useNavigate();
 
-    const data = [
-        {
-            "disciplinas": 
-            [
-                {
-                    "nome": "Matemática Discreta",
-                    "sigla": "MD",
-                    "ementa": "Introdução à Lógica Formal. Métodos de demonstração. Teoria ingênua dos conjuntos. Relações e funções. Ordem e equivalência. Cardinalidade. Indução. Teoria axiomática de conjuntos. Estruturas algébricas. Reticulados e álgebras booleanas. Indução. Recursividade e Relações de Recorrência.",
-                    "ch_teorica": 30,
-                    "ch_pratica": 60
-                },
-                {
-                    "nome": "Introdução a Programação",
-                    "sigla": "IP",
-                    "ementa": "Arquitetura de von Neumann; Introdução à linguagem C11; O paradigma imperativo; Conceito de variáveis e constantes; Tipos de dados simples: inteiro, caracter, e ponto flutuante; Programação estruturada; Estrutura sequencial; Expressões aritméticas; Expressões lógicas; Estrutura de seleção; Estrutura de repetição; Tipos de dados estruturados: arranjos, cadeia de caracteres, matrizes, enumerações, e uniões; Subprogramas: procedimentos e funções; Subprogramas recursivos. Arquivos e diretórios.",
-                    "ch_teorica": 30,
-                    "ch_pratica": 60
-                },
-                {
-                    "nome": "Algoritmos e Estruturas de Dados I",
-                    "sigla": "AED1",
-                    "ementa": "Tipo Ponteiro em C18; Alocação Dinâmica de Memória em C18; Tipos de Dados Abstratos; Pilhas; Filas; Filas de Prioridade; Listas Simplesmente Encadeadas; Listas Duplamente Encadeadas; Listas Circulares; Busca Aleatória; Busca Linear; Busca Binária; Busca Exponencial; Busca por Interpolação; Insertion Sort; Shell Sort; Bubble Sort; Merge Sort; Quicksort; Tabelas de Espalhamento.",
-                    "ch_teorica": 30,
-                    "ch_pratica": 60
-                }
-            ]
-        }
-    ]
-
     const redirect = (index: any) => {
-        navigate('/professor/listagem-disciplinas/listagem-presenca', {
-            state: {
-                disciplinaType: data[0].disciplinas[index].nome
-            }
-        })
+        navigate('/professor/listagem-disciplinas/listagem-presenca')
     }
 
     return (
@@ -67,7 +44,7 @@ export function ListSubjectsByTeacher() {
                         </thead>
                         
                         <tbody  className="divide-y">
-                            {data[0].disciplinas.map((value, index) => (
+                            {disciplinas.map((value, index) => (
                                     <tr key={index}>
                                         <td className="py-4 text-center bg-[#fefefe]">
                                             <button className="text-white bg-[#3A71BE] p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => redirect(index)}>
@@ -75,7 +52,7 @@ export function ListSubjectsByTeacher() {
                                             </button>
                                         </td>
                                         <td className="text-center whitespace-nowrap bg-[#fefefe]">
-                                            <div className="flex text-[18px] justify-center"> #CC_COMP12</div>
+                                            <div className="flex text-[18px] justify-center">{value.codigo}</div>
                                         </td>
                                         <td className="text-center text-[18px] whitespace-nowrap bg-[#fefefe]">{value.nome}</td>
                                         <td className="text-center whitespace-nowrap bg-[#fefefe]">
@@ -90,7 +67,7 @@ export function ListSubjectsByTeacher() {
                     </table>
                 </div>
             </div>
-            {dialog && <DialogSubject info={data[0].disciplinas[index]} setModal={setDialog} />}
+            {dialog && <DialogSubject info={disciplinas[index]} setModal={setDialog} />}
         </Page>
     )
 }
