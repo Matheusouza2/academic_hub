@@ -127,36 +127,34 @@ class UsuarioController extends Controller
                 $user_delete->endereco = null;
                 $user_delete->save();
             }
-
             return response()->json(['message' => 'Aluno deletado com sucesso.'], 200);
         }
     }
     //Função para validar Login
-    public function validateLogin(Request $request)
-    {
+public function validateLogin(Request $request){
+    $request->validate([
+        'cpf' => ['required'],
+        'senha' => ['required'],
+    ]);
+    $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
 
-        $request->validate([
-            'cpf' => ['required'],
-            'senha' => ['required'],
-        ]);
+    if (!$usuario)
+        return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);
 
-        $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
+    $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
 
-        if (!$usuario)
-            return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);;
+    $token = JWTAuth::attempt($credentials);
+   
+    if(!$token) 
+        return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
 
-        $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
+    return response()->json([
+        'data' => [
+            'token' => $token,
+            'user' => $usuario, // Adicionando as informações do usuário
+            'message' => 'Login realizado com sucesso.'
+        ]
+    ], 200);
+}
 
-        $token = JWTAuth::attempt($credentials);
-       
-        if(!$token) 
-            return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
-
-        return response()->json([
-            'data' => [
-                'token' => $token,
-                'message' => 'Login realizado com sucesso.'
-            ]
-        ], 200);
-    }
 }
