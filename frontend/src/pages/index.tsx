@@ -3,7 +3,7 @@ import { AlteraNotaProfessor } from "./AlteraNotaProfessor";
 import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
 import { CadCurso } from "./CadCurso";
 import { ClassRegistration } from "./ClassRegistration";
-import { QueryGrades } from "./ConsultaNotas";
+import { ConsultaNotas } from "./ConsultaNotas";
 import { CreateSubjects } from "./CreateSubjects";
 import { DashboardAluno } from "./DashboardAluno";
 import { ListCursos } from "./ListCursos";
@@ -18,7 +18,7 @@ export const Pages = {
   CreateSubjects,
   CadCurso,
   ListCursos,
-  QueryGrades,
+  ConsultaNotas,
   ScreenReviewApproval,
   DashboardAluno,
   AtribuirDisciplinasProfessor,

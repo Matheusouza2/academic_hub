@@ -8,7 +8,7 @@ export function Router() {
       <Route path="/cadastro-disciplinas" element={<Pages.CreateSubjects />} />
       <Route path="/cadastro-curso/:curso_id?" element={<Pages.CadCurso />} />
       <Route path='/revisao-plano-disciplina' element={<Pages.ScreenReviewApproval />} />
-      <Route path="/notas" element={<Pages.QueryGrades />} />
+      <Route path="/notas" element={<Pages.ConsultaNotas />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
       <Route path="/professor/listagem-disciplinas/:professor_id" element={<Pages.ListSubjectsByTeacher/>} />
       <Route path="/professor/listagem-disciplinas/listagem-presenca" element={<Pages.PresencaAlunos/>} />
