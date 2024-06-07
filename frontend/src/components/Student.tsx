@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdChevronRight } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
 import { Modal } from 'react-responsive-modal';
 
 type StudentDetailsModalProps = {
@@ -24,6 +25,35 @@ function StudentDetailsModal({ modalIsOpen, onClose, data }: StudentDetailsModal
         <div>
           <span className="text-gray-700">CPF</span>
           <p className="text-xl font-bold text-gray-900">{data.cpf}</p>
+        </div>
+      </div>
+      <div>
+        <strong>Disciplinas</strong>
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between shadow-sm">
+            <p>Português</p>
+            <button className="p-2 transition-all bg-red-500 hover:bg-red-700">
+              <FaTrash color="#fff" />
+            </button>
+          </div>
+          <div className="flex justify-between shadow-sm">
+            <p>Português</p>
+            <button className="p-2 transition-all bg-red-500 hover:bg-red-700">
+              <FaTrash color="#fff" />
+            </button>
+          </div>
+          <div className="flex justify-between shadow-sm">
+            <p>Português</p>
+            <button className="p-2 transition-all bg-red-500 hover:bg-red-700">
+              <FaTrash color="#fff" />
+            </button>
+          </div>
+          <div className="flex justify-between shadow-sm">
+            <p>Português</p>
+            <button className="p-2 transition-all bg-red-500 hover:bg-red-700">
+              <FaTrash color="#fff" />
+            </button>
+          </div>
         </div>
       </div>
     </Modal>
