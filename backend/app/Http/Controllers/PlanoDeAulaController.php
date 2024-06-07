@@ -56,11 +56,14 @@ class PlanoDeAulaController extends Controller
     public function approve(Request $request){
 
         $request->validate([
-            'planoAula_id' => 'required|exists:plano_de_aulas,id' //valida se o id passado existe na tabela
+            'id' => 'required' //valida se o id passado existe na tabela
         ]);
 
-        $plano_aula =  PlanoDeAula::findOrFail($request->plano_de_aula_id); //é buscado a respectiva tabela do id especificado
-        $plano_aula->status = 'ativo'; // status = ativo, é denotado como aprovado de forma idem à migration
+        $plano_aula =  PlanoDeAula::find($request->id); //é buscado a respectiva tabela do id especificado
+        if(!$plano_aula){
+            return response()->json(['message' => 'Plano de aula não encontrado!'], 400);
+        }
+        $plano_aula->status = 1; // status = ativo, é denotado como aprovado de forma idem à migration
         $plano_aula->save();
 
         return response()->json(['message' => 'Plano de aula aprovado!'], 200);
@@ -69,14 +72,17 @@ class PlanoDeAulaController extends Controller
     public function giveBack(Request $request){
 
         $request->validate([
-            'planoAula_id' => 'required|exists:plano_de_aulas,id' //valida se o id passado existe na tabela
+            'id' => 'required' //valida se o id passado existe na tabela
         ]);
 
-        $plano_aula =  PlanoDeAula::findOrFail($request->plano_de_aula_id); //é buscado a respectiva tabela do id especificado
-        $plano_aula->status = 'inativo'; // status = inativo, é denotado como não aprovado de forma idem à migration
+        $plano_aula =  PlanoDeAula::find($request->id); //é buscado a respectiva tabela do id especificado
+        if(!$plano_aula){
+            return response()->json(['message' => 'Plano de aula não encontrado!'], 400);
+        }
+        $plano_aula->status = 2; // status = inativo, é denotado como não aprovado de forma idem à migration
         $plano_aula->save();
 
-        return response()->json(['message' => 'Plano de aula devolvido!'], 400);
+        return response()->json(['message' => 'Plano de aula devolvido!'], 200);
 
     }
 
