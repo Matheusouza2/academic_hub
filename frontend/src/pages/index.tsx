@@ -12,6 +12,7 @@ import { Login } from "./Login";
 import { PresencaAlunos } from "./PresencaAlunos";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import { AlterarDisciplina } from "./AlterarDisciplina";
+import { Students } from "./Students";
 
 export const Pages = {
   Login,
@@ -27,5 +28,6 @@ export const Pages = {
   ClassRegistration,
   AltCurso,
   PresencaAlunos,
-  AlterarDisciplina
+  AlterarDisciplina,
+  Students,
 };
