@@ -12,6 +12,7 @@ import { Login } from "./Login";
 import { PresencaAlunos } from "./PresencaAlunos";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import { AlterarDisciplina } from "./AlterarDisciplina";
+import { CadastrarPlanoAulaProfessor } from "./CadastrarPlanoAulaProfessor";
 import { Students } from "./Students";
 
 export const Pages = {
@@ -29,5 +30,6 @@ export const Pages = {
   AltCurso,
   PresencaAlunos,
   AlterarDisciplina,
+  CadastrarPlanoAulaProfessor
   Students,
 };

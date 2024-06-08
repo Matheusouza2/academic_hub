@@ -17,6 +17,7 @@ export function Router() {
       <Route path="/notas-professor" element={<Pages.AlteraNotaProfessor/>} />
       <Route path='/ListCursos' element={<Pages.ListCursos />} />
       <Route path='/alterar-disciplina' element={<Pages.AlterarDisciplina />} />
+      <Route path='/cadastro-plano-aula-professor' element={<Pages.CadastrarPlanoAulaProfessor />} />
       <Route path='/alunos' element={<Pages.Students />} />
     </Routes>
   );
