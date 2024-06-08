@@ -13,7 +13,7 @@ class AlunoSeeder extends Seeder
      */
     public function run(): void
     {
-        ModelsAluno::create();
-        ModelsAluno::create();
+        ModelsAluno::create(['usuario'=>1]);
+        ModelsAluno::create(['usuario'=>2]);
     }
 }

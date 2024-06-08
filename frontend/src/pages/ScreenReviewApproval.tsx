@@ -4,13 +4,14 @@ import { MdOutlineRateReview } from "react-icons/md";
 import { Dialog } from "../components/Dialog";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive'
-
+import { api } from "../services/api";
 
 export function ScreenReviewApproval() {
  const isMidScreen = useMediaQuery({ query: '(min-width: 768px)' })
  const isLowScreen = useMediaQuery({ query: '(min-width: 640px)' })
  const data = [
     {
+        id : 1,
         "disciplina": "Matemática Discreta",
         "ementa": "Conjuntos. Funções. Relações. Lógica Proposicional. Lógica de Predicados. Álgebra de Boole. Teoria dos Conjuntos. Teoria dos Grafos.",
         "objetivo": "Proporcionar aos alunos uma base sólida em conceitos matemáticos fundamentais para o estudo de ciência da computação e áreas relacionadas.",
@@ -49,7 +50,7 @@ export function ScreenReviewApproval() {
               "data": "22/09/2024",
               "conteudo": "Lógica proposicional",
               "horario": "09:00 - 11:00",
-              "professor":"Débora Araujo"
+              "professor":"Débor a Araujo"
             },
             {
               "data": "29/09/2024",
@@ -81,10 +82,19 @@ export function ScreenReviewApproval() {
 
     const [modalPD, setModal] = useState(false)
     
-    const approves = () => {
+    const approves = (id:number) => {
         // Patrão tú vai ter que fazer a requisição de aprovação aqui!!!
+        
+        console.log(id);
+        
+
+        const dataContent = {
+            "id":id
+        }
+
+        api.post(`/v1/plano_de_aulas/aprovar`, dataContent).then(res => console.log(res))
         console.log("Aprovação")
-    }
+    } 
 
     return (
         <Page>
@@ -105,7 +115,7 @@ export function ScreenReviewApproval() {
                         <tr>
                             <td className="px-4 py-2 text-center whitespace-nowrap">
                                 <div className="w-full flex justify-center">
-                                    <button className="text-white bg-green p-2 mr-3 lg:mr-5 xl:mr-8 rounded-md" title="Aprovar Plano" onClick={approves}>
+                                    <button className="text-white bg-green p-2 mr-3 lg:mr-5 xl:mr-8 rounded-md" title="Aprovar Plano" onClick={() => approves(1)}>
                                         <FaCheck/>
                                     </button>
                                     <button className="text-white bg-blue-500 p-2 rounded-md" title="Revisar Plano" onClick={() => setModal(true)}>
@@ -122,7 +132,7 @@ export function ScreenReviewApproval() {
                 </table>
             </div>
             
-           { modalPD && <Dialog info={data[0]} setModal={setModal}></Dialog>}
+           { modalPD && <Dialog info={data[0]} id={1} setModal={setModal}></Dialog>}
         </Page>
     )
 }

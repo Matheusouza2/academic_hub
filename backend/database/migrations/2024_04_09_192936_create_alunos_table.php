@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("matricula");
-
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 import { MdClose } from "react-icons/md";
 import Disciplina from "../interfaces/Disciplina";
+import { api } from "../services/api";
 
 type UserProps = {
     data: {
@@ -10,19 +11,26 @@ type UserProps = {
 
 type Props = {
     setModal: Function,
-    info: Disciplina
+    info: Disciplina,
+    id: number
 }
 
-export function Dialog({ setModal, info }: Props) {
+export function Dialog({ setModal, info, id }: Props) {
 
     const close = () => {
         console.log("CLOSED")
         setModal(false)
     }
 
-    const requestReview = () => {
+    const requestReview = (id: number) => {
         // Patrão tú vai ter que fazer a requisição de solicitação de review aqui!!!
+        console.log(id);
 
+        const dataContent = {
+            'id': id
+        }
+
+        api.post(`/v1/plano_de_aulas/devolver`, dataContent).then(res => console.log(res))
         console.log("Solicitando Review...")
         setModal(false)
     }
@@ -72,13 +80,13 @@ export function Dialog({ setModal, info }: Props) {
                                         <th className="px-4 py-2 bg-gray-200 text-center  text-gray-700">Professor</th>
                                     </tr>
                                 </thead>
-                                    {
-                                        info.unidade_programatica.length && unidadeProgramatica(info)
-                                    }
+                                {
+                                    info.unidade_programatica.length && unidadeProgramatica(info)
+                                }
                             </table>
                         </div>
 
-                        <button className="text-white bg-blue-500 p-2 mt-4 rounded-md" onClick={requestReview}>Solicitar Revisão</button>
+                        <button className="text-white bg-blue-500 p-2 mt-4 rounded-md" onClick={() => requestReview(id)}>Solicitar Revisão</button>
 
                     </div>
                 </div>
