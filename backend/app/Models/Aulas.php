@@ -14,11 +14,11 @@ class Aulas extends Model
 
     public function professor()
     {
-        return $this->hasOne(Usuario::class, 'id', 'professor_id');
+        return $this->hasOne(Professor::class, 'id', 'professor_id');
     }
 
     public function disciplina()
     {
-        return $this->hasOne(Usuario::class, 'id', 'disciplina_id');
+        return $this->hasOne(Disciplina::class, 'id', 'disciplina_id');
     }
 }
