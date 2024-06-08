@@ -7,7 +7,7 @@ export function Router() {
       <Route path="/" element={<Pages.Login />} />
       <Route path="/cadastro-disciplinas" element={<Pages.CreateSubjects />} />
       <Route path="/cadastro-curso/:curso_id?" element={<Pages.CadCurso />} />
-      <Route path='/revisao-plano-disciplina' element={<Pages.ScreenReviewApproval />} />
+      <Route path="/revisao-plano-disciplina" element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.ConsultaNotas />} />
       <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
       <Route path="/professor/listagem-disciplinas/:professor_id" element={<Pages.ListSubjectsByTeacher/>} />
@@ -18,6 +18,7 @@ export function Router() {
       <Route path='/ListCursos' element={<Pages.ListCursos />} />
       <Route path='/alterar-disciplina' element={<Pages.AlterarDisciplina />} />
       <Route path='/cadastro-plano-aula-professor' element={<Pages.CadastrarPlanoAulaProfessor />} />
+      <Route path='/alunos' element={<Pages.Students />} />
     </Routes>
   );
 }

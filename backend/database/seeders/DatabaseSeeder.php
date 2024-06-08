@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             NotasSeeder::class,
             PreRequisitoSeeder::class,
             TurmaSeeder::class,
-            MatriculaSeeder::class
+            MatriculaSeeder::class,
+            PlanoDeAulaSeeder::class,
         ]);
     }
 }

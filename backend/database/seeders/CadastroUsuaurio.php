@@ -20,5 +20,14 @@ class CadastroUsuaurio extends Seeder
             "sexo" => "M",
             "senha" => bcrypt("euOdeioPython"),
         ]);
+
+        Usuario::create([
+            'cpf' => "123.456.989-00",
+            'nome' => "Elanio Alves",
+            'email' => "elanio@seed.com",
+            "data_nascimento" => "2000-03-21",
+            "sexo" => "M",
+            "senha" => bcrypt("euOdeioJava"),
+        ]);
     }
 }
