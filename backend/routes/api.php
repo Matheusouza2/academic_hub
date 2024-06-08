@@ -7,6 +7,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AulasController;
 use App\Http\Controllers\CoordenadorController;
 use App\Http\Controllers\NotaController;
+use App\Http\Controllers\PlanoDeAulaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
@@ -81,6 +82,16 @@ Route::prefix('v1')->group(function () {
         Route::get('lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorCurso']);
         Route::get('professor/lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorProfessor']);
     });
+
+    /**
+     *  Rotas para o controller de PlanoDeAula
+     */
+
+     Route::prefix('plano_de_aulas')->group(function (){
+        Route::post('enviar', [PlanoDeAulaController::class, 'submit']);
+        Route::patch('aprovar', [PlanoDeAulaController::class, 'approve']);
+        Route::patch('devolver', [PlanoDeAulaController::class, 'giveBack']);
+     });
 
     /**
     * Rotas para o controller de Coordenador
