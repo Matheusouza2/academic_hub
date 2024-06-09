@@ -50,6 +50,8 @@ Route::prefix('v1')->group(function () {
         Route::post('store', [CursosController::class, 'store']);
         Route::put('/update/{id}', [CursosController::class, 'update']);
         Route::get('/list-curso', [CursosController::class, 'show']);
+        Route::post('/designar-coordenador/{user_id}/{curso_id}', [CursosController::class, 'designarCoordenador']);
+
     });
 
     /**
