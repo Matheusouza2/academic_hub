@@ -30,6 +30,6 @@ export const Pages = {
   AltCurso,
   PresencaAlunos,
   AlterarDisciplina,
-  CadastrarPlanoAulaProfessor
+  CadastrarPlanoAulaProfessor,
   Students,
 };
