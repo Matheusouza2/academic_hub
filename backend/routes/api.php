@@ -11,6 +11,8 @@ use App\Http\Controllers\PlanoDeAulaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
+use App\Models\Disciplina;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -81,6 +83,7 @@ Route::prefix('v1')->group(function () {
         Route::post('store', [DisciplinaController::class, 'store']);
         Route::get('lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorCurso']);
         Route::get('professor/lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorProfessor']);
+        Route::put('alteracao/{id}', [DisciplinaController::class, 'alteraçãoDisciplina']);
     });
 
     /**
