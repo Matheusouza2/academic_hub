@@ -90,4 +90,25 @@ class DisciplinaController extends Controller
         return response()->json(['message' => 'Disciplinas buscadas com sucesso', 'disciplinas' => $disciplinas], 200);
     }
 
+    public function alteraçãoDisciplina(Request $request, $id)
+    {
+        $disciplina = Disciplina::find($id);
+
+        if(!$disciplina){
+            return response()->json(['message' => 'Disciplina não encontrada']);
+        }
+
+        $disciplina->nome = $request->input('nome');
+        $disciplina->codigo = $request->input('codigo');
+        $disciplina->ch_pratica = $request->input('ch_pratica');
+        $disciplina->ch_teorica = $request->input('ch_teorica');
+        $disciplina->sigla = $request->input('sigla');
+        $disciplina->ementa = $request->input('ementa');
+
+        $disciplina->save();
+
+        return response()->json(['message' => 'Disciplina atualizada com sucesso']);
+
+    }
+
 }
