@@ -16,8 +16,18 @@ export function ClassRegistration() {
 
     const onSubmit = (data: any) => {
 
+        var userObject
+
+        const getUser = localStorage.getItem("user")
+        
+        if(getUser){
+
+            userObject = JSON.parse(getUser)
+
+        }
+
         var dataContent = {
-            'professor_id': localStorage.getItem('professor_id'),
+            'professor_id': userObject.id,
             'disciplina_id': disciplina_id,
             'data_aula': data.completion_date,
             'assunto': data.content,
