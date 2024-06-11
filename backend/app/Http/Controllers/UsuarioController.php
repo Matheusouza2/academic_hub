@@ -143,7 +143,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
 
         if (!$usuario)
-            return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);;
+            return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);
 
         $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
 
