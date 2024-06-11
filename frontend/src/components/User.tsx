@@ -1,21 +1,35 @@
-import { AppIcons } from "../assets/exports"
+import { AppIcons } from "../assets/exports";
+import { useMediaQuery } from "react-responsive";
+import { FaBars } from "react-icons/fa";
 
 type UserProps = {
   data: {
-    name: string
-    period: string
-  }
-}
+    name: string;
+    period: string;
+  };
+};
+
 export function User({ data }: UserProps) {
+  const isLowScreen = useMediaQuery({ query: "(min-width: 768px)" });
+
   return (
-    <div className="absolute top-0 right-0 flex gap-6 px-6 py-2 border border-gray-700 rounded-sm">
-      <div className="p-2 bg-blue-400 border-4 border-blue-900 rounded-full w-fit">
-        <img src={AppIcons.user} className="w-8 h-8" alt="" />
+    <nav className="flex items-center justify-between mt-2 mb-14 lg:mb-5 lg:mt-1">
+      <div className="">
+        {!isLowScreen && (
+          <button>
+            <FaBars className="text-[#3160a2] text-[45px] p-[6px] rounded border-2 border-[#3160a2]" />
+          </button>
+        )}
       </div>
-      <div className="flex flex-col mr-10">
-        <p>{data?.name}</p>
-        <span>{data?.period}</span>
+      <div className="flex items-center gap-5">
+        <div className="p-2 bg-blue-400 border-4 border-blue-900 rounded-full w-fit">
+          <img src={AppIcons.user} className="w-8 h-8" alt="" />
+        </div>
+        <div className="flex flex-col mr-6">
+          <p>{data?.name}</p>
+          <span>{data?.period}</span>
+        </div>
       </div>
-    </div>
-  )
+    </nav>
+  );
 }

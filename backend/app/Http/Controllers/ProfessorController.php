@@ -34,10 +34,25 @@ class ProfessorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Professor $professor)
-    {
-        //
-    }
+
+
+     public function show(Request $request)
+     {
+         try {
+             $professors = Professor::all();
+             return response()->json($professors, 200);
+         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+
+             return response()->json(['error' => 'Professor não encontrado'], 404);
+         } catch (\Illuminate\Database\QueryException $e) {
+
+             return response()->json(['error' => 'Falha ao consultar o banco de dados'], 500);
+         } catch (\Exception $e) {
+             return response()->json(['error' => $e->getMessage()], 500);
+         }
+     }
+
+  
 
     /**
      * Show the form for editing the specified resource.

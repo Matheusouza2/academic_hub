@@ -4,28 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Usuario;
 
 class CursosController extends Controller
 {
-    /**
-     * Ex.
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
 
     public function store(Request $request)
     {
@@ -48,62 +41,75 @@ class CursosController extends Controller
         // uma resposta json é retornada e o código de status 201 é retornado para indicar que um novo curso foi criado
         return response()->json(['message' => 'Curso criado com sucesso', 'curso' => $curso], 201);
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+     // funcao para listar os cursos
+    public function show()
     {
-        //
+        $cursos = Curso::paginate(20);
+        return response()->json($cursos);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Curso $curso)
-    {
-        // Para assegurar que as informações estejam nos conformes:
+    public function update(Request $request, $id)
+{
+    try {
+        // Encontre o curso pelo id
+        $curso = Curso::find($id);
+
+        // Verifique se o curso existe
+        if (!$curso) {
+            return response()->json(['message' => 'Curso não encontrado.'], 404);
+        }
+
+        // Validação dos dados de atualização
         $request->validate([
-            // Nome é um atributo não facultativo;
-            // Abaixo, também são verificados todos os nomes de curso existentes, 
-            // à exceção do nome do curso antes da atualização.
-            
-            'nome' => ['required', "unique:cursos, nome, $curso->nome"],
-            'coordenador_id' => ['required', 'exists:professores,id'],
+            'nome' => 'required|unique:cursos,nome,' . $curso->id, // O campo 'nome' é obrigatório e deve ser único na tabela 'cursos', exceto para o curso atual.
+            'coordenador_id' => ['required', 'exists:professores,id'], // O campo 'coordenador_id' é obrigatório e deve existir como 'id' na tabela 'professores'.
             'carga_horaria' => 'required',
             'sigla' => 'required'
         ]);
 
-        // Em seguida, certificando-se de que o ID existe. Se não existir, este método encerrará prontamente
-        // e vai retornar erro 404. Senão, o fluxo de execução continuará.
+        // Atualização dos dados do curso
+        $curso->update($request->all());
 
-        if (!$curso) {
-            return response()->json(['message' => 'A operação falhou por ID inexistente.'], 404);
-        }
+        return response()->json(['message' => 'Alteração de curso bem-sucedida.', 'curso' => $curso], 200);
 
-        // (A SER APRECIADO PELO PROFESSOR) $curso->update($request->validated());
-
-        $curso->nome = $request->nome;
-        $curso->coordenador_id = $request->coordenador_id;
-        $curso->carga_horaria = $request->carga_horaria;
-        $curso->sigla = $request->sigla;
-        $curso->save();
-
-        return response()->json(['message' => 'Alteração de curso bem-sucedida.'], 201);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Erro ao atualizar curso.', 'error' => $e->getMessage()], 500);
     }
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+
     public function destroy(string $id)
     {
         //
     }
+
+    public function designarCoordenador(Request $request, string $user_id, string $curso_id) {
+
+        $user = Usuario::find($user_id);
+        $curso = Curso::find($curso_id);
+
+        if(!$user || !$curso) {
+            return response()->json(['message' => 'Usuário ou curso não encontrado'], 404);
+        }
+
+        // Verifique se o usuário é um administrador
+        if($user->tipo_usuario != 0) {
+            return response()->json(['message' => 'Apenas administradores podem designar coordenadores'], 403);
+        }
+
+        // Atualize o coordenador_id do curso
+        $curso->coordenador_id = $user_id;
+        $curso->save();
+
+        return response()->json(['message' => 'Coordenador designado com sucesso para o curso']);
+    }
+
 }
