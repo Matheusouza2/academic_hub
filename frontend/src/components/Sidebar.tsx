@@ -1,6 +1,6 @@
+import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 import { AppIcons } from "../assets/exports";
-import { useMediaQuery } from "react-responsive";
 
 type SidebarProps = {
   type?: "student" | "admin" | "teacher";
@@ -70,7 +70,7 @@ export const Sidebar = ({ type = "teacher" }: SidebarProps) => {
       </div>
 
       <div className="flex flex-col w-full gap-9 lg:gap-8 pl-[22px] lg:pl-[12px] xl:pl-6">
-        {OPTIONS[type_user].map((option) => (
+        {OPTIONS[0].map((option) => (
           <Link to={option.href}>
             <div
               data-toggle="tooltip"
