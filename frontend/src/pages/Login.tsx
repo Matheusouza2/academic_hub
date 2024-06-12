@@ -48,12 +48,12 @@ export function Login() {
       <div className="flex items-center justify-center overflow-hidden rounded-3xl h-3/4 sm:h-1/2 w-3/4 sm:w-1/2 shadow-2xl">
         {/* imagem */}
         <div className="bg-blue-400 sm:block hidden w-1/2">
-          <img src={login} alt="imagem login" />
+          <img src={login} alt="imagem login" className="h-full w-full object-cover" />
         </div>
         {/* formulário */}
         <div className="w-full sm:w-1/2 flex flex-col items-center justify-center space-y-2 px-6">
           <header>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className="h-12" />
           </header>
           <form onSubmit={handleLogin} className="flex flex-col items-center space-y-4 w-full">
             <div className="w-full">
@@ -85,7 +85,7 @@ export function Login() {
               </label>
               <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500">Esqueci minha senha?</a>
             </div>
-            <button className="w-full px-4 py-2 bg-blue-400 text-white rounded-md hover:bg-blue-500">Login</button>
+            <button type="submit" className="w-full px-4 py-2 bg-blue-400 text-white rounded-md hover:bg-blue-500">Login</button>
           </form>
           {message && <p className="text-sm text-red-600 mt-2">{message}</p>}
         </div>

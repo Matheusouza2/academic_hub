@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 
 export function DashboardAluno() {
     const [date, setDate] = useState(new Date());
-
+//responsivo
     return (
         <Page>
             <div className="py-3 px-4 sm:px-6 lg:px-8">
