@@ -13,7 +13,7 @@ export function User({ data }: UserProps) {
   const isLowScreen = useMediaQuery({ query: "(min-width: 768px)" });
 
   return (
-    <nav className="flex justify-between items-center mb-14 lg:mb-5 mt-2 lg:mt-1">
+    <nav className="flex items-center justify-between mt-2 mb-14 lg:mb-5 lg:mt-1">
       <div className="">
         {!isLowScreen && (
           <button>

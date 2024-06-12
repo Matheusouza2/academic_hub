@@ -3,7 +3,7 @@ import { AlteraNotaProfessor } from "./AlteraNotaProfessor";
 import { AtribuirDisciplinasProfessor } from "./AtribuirDisciplinasProfessor";
 import { CadCurso } from "./CadCurso";
 import { ClassRegistration } from "./ClassRegistration";
-import { QueryGrades } from "./ConsultaNotas";
+import { ConsultaNotas } from "./ConsultaNotas";
 import { CreateSubjects } from "./CreateSubjects";
 import { DashboardAluno } from "./DashboardAluno";
 import { ListCursos } from "./ListCursos";
@@ -12,13 +12,15 @@ import { Login } from "./Login";
 import { PresencaAlunos } from "./PresencaAlunos";
 import { ScreenReviewApproval } from "./ScreenReviewApproval";
 import { AlterarDisciplina } from "./AlterarDisciplina";
+import { CadastrarPlanoAulaProfessor } from "./CadastrarPlanoAulaProfessor";
+import { Students } from "./Students";
 
 export const Pages = {
   Login,
   CreateSubjects,
   CadCurso,
   ListCursos,
-  QueryGrades,
+  ConsultaNotas,
   ScreenReviewApproval,
   DashboardAluno,
   AtribuirDisciplinasProfessor,
@@ -27,5 +29,7 @@ export const Pages = {
   ClassRegistration,
   AltCurso,
   PresencaAlunos,
-  AlterarDisciplina
+  AlterarDisciplina,
+  CadastrarPlanoAulaProfessor,
+  Students,
 };

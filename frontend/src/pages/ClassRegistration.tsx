@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { api } from "../services/api";
 
 export function ClassRegistration() {
+
     const { register, handleSubmit } = useForm()
 
     var path = window.location.href
@@ -14,8 +15,19 @@ export function ClassRegistration() {
     }
 
     const onSubmit = (data: any) => {
+
+        var userObject
+
+        const getUser = localStorage.getItem("user")
+        
+        if(getUser){
+
+            userObject = JSON.parse(getUser)
+
+        }
+
         var dataContent = {
-            'professor_id': localStorage.getItem('professor_id'),
+            'professor_id': userObject.id,
             'disciplina_id': disciplina_id,
             'data_aula': data.completion_date,
             'assunto': data.content,
@@ -57,7 +69,7 @@ export function ClassRegistration() {
                     </div>
 
                     <div className="w-full flex justify-end mt-10 lg:mt-20">
-                        <button type="button" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-[#22C55E] text-white py-2 px-4">
+                        <button type="submit" className="hover:opacity-60 flex items-center justify-center gap-2 rounded-md bg-[#22C55E] text-white py-2 px-4">
                             <img src={AppIcons.disk} alt="Disquete" />
                             Salvar
                         </button>

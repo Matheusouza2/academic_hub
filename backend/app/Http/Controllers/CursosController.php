@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Usuario;
 
 class CursosController extends Controller
 {
-    
+
     public function index()
     {
         //
@@ -48,12 +49,12 @@ class CursosController extends Controller
         return response()->json($cursos);
     }
 
-    
+
     public function edit(string $id)
     {
         //
     }
-    
+
     public function update(Request $request, $id)
 {
     try {
@@ -89,4 +90,26 @@ class CursosController extends Controller
     {
         //
     }
+
+    public function designarCoordenador(Request $request, string $user_id, string $curso_id) {
+
+        $user = Usuario::find($user_id);
+        $curso = Curso::find($curso_id);
+
+        if(!$user || !$curso) {
+            return response()->json(['message' => 'Usuário ou curso não encontrado'], 404);
+        }
+
+        // Verifique se o usuário é um administrador
+        if($user->tipo_usuario != 0) {
+            return response()->json(['message' => 'Apenas administradores podem designar coordenadores'], 403);
+        }
+
+        // Atualize o coordenador_id do curso
+        $curso->coordenador_id = $user_id;
+        $curso->save();
+
+        return response()->json(['message' => 'Coordenador designado com sucesso para o curso']);
+    }
+
 }
