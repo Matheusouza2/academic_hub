@@ -6,7 +6,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { ToastContainer, toast } from "react-toastify";
-import { Professor } from "../interfaces/Professor";
+//<<<<<<< HEAD
+//import { useProfessorController } from "../controllers/AtribuirDisciplinasProfessorController";
+//import { Professor } from "../interfaces/Professor";
+//=======
+//import { Professor } from "../interfaces/Professor";
+//>>>>>>> 0c40d5e3124a6b4ddee55398380f7f2b538f1c2b
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useProfessorController } from "../controllers/AtribuirDisciplinasProfessorController";
@@ -144,4 +149,4 @@ export function AtribuirDisciplinasProfessor() {
       </div>
     </Page>
   );
-}
+} 

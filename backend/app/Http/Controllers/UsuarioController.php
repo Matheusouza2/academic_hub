@@ -131,7 +131,6 @@ class UsuarioController extends Controller
         }
     }
     //Função para validar Login
-    //Função para validar Login
     public function validateLogin(Request $request)
     {
         // Valida os campos de entrada
