@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { Page } from "./Page";
-import { MdOutlineContentPasteSearch } from "react-icons/md";
+import { useEffect, useState } from "react";
 import { FaClipboardList } from "react-icons/fa";
-import { DialogSubject } from "../components/DialogSubject";
+import { MdOutlineContentPasteSearch } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../services/api"
+import { DialogSubject } from "../components/DialogSubject";
 import buscarDisciplinas from "../services/buscarDisciplinas";
+import { Page } from "./Page";
 
 export function ListSubjectsByTeacher() {
     
@@ -15,10 +14,12 @@ export function ListSubjectsByTeacher() {
 
     const { professor_id } = useParams();
     
-    window.onload = async () => {
-        const data = await buscarDisciplinas(professor_id);
-        setDisciplinas(data?.disciplinas);
-    }
+    useEffect(() => {
+        buscarDisciplinas(professor_id)
+            .then(date => {
+                setDisciplinas(data?.disciplinas);
+            })
+    }, [professor_id])
     
     const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ export function ListSubjectsByTeacher() {
                         </thead>
                         
                         <tbody  className="divide-y">
-                            {disciplinas.map((value, index) => (
+                            {disciplinas?.map((value, index) => (
                                     <tr key={index}>
                                         <td className="py-4 text-center bg-[#fefefe]">
                                             <button className="text-white bg-[#3A71BE] p-2 rounded-md items-center" title="Aprovar Plano" onClick={() => redirect(index)}>
