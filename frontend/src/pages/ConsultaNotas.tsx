@@ -113,4 +113,4 @@ export function ConsultaNotas() {
     </div>
   </Page>
   );
-}
+} 

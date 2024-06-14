@@ -6,16 +6,21 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { ToastContainer, toast } from "react-toastify";
-import { Professor } from "../interfaces/Professor";
+//<<<<<<< HEAD
+//import { useProfessorController } from "../controllers/AtribuirDisciplinasProfessorController";
+//import { Professor } from "../interfaces/Professor";
+//=======
+//import { Professor } from "../interfaces/Professor";
+//>>>>>>> 0c40d5e3124a6b4ddee55398380f7f2b538f1c2b
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useProfessorController } from "../controllers/AtribuirDisciplinasProfessorController";
 
 export function AtribuirDisciplinasProfessor() {
   const {
     professores,
     disciplinas,
     carregando,
-    erro,
     obterProfessores,
     obterDisciplinas,
     adicionarDisciplina
@@ -48,7 +53,7 @@ export function AtribuirDisciplinasProfessor() {
 
   if (carregando) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen">
         <CircularProgress />
       </div>
     );
@@ -57,26 +62,26 @@ export function AtribuirDisciplinasProfessor() {
   return (
     <Page>
       <ToastContainer position="bottom-center" />
-      <div className="container mx-auto px-4">
-        <h1 className="text-2xl font-bold text-center my-4">
+      <div className="container px-4 mx-auto">
+        <h1 className="my-4 text-2xl font-bold text-center">
           Atribuir Disciplinas ao Professor
         </h1>
         {professores.map((professor) => (
           <div
             key={professor.siape}
-            className="bg-white shadow-lg rounded-lg p-6 mb-6"
+            className="p-6 mb-6 bg-white rounded-lg shadow-lg"
           >
-            <h2 className="text-xl font-semibold mb-2">{professor.nome}</h2>
+            <h2 className="mb-2 text-xl font-semibold">{professor.nome}</h2>
             <p className="text-gray-700">SIAPE: {professor.siape}</p>
             <button
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+              className="px-4 py-2 mt-4 text-white bg-blue-500 rounded"
               onClick={() => handleOpen(professor)}
             >
               Adicionar Disciplina
             </button>
 
             <button
-              className="mt-4 ml-4 bg-blue-500 text-white px-4 py-2 rounded"
+              className="px-4 py-2 mt-4 ml-4 text-white bg-blue-500 rounded"
               onClick={() => {
                 setProfessorSelecionado(professor);
                 setOpenPopup(true);
@@ -94,7 +99,7 @@ export function AtribuirDisciplinasProfessor() {
           <DialogTitle>Adicionar Disciplina</DialogTitle>
           <DialogContent>
             <select
-              className="border-2 border-gray-400 rounded px-2 py-2"
+              className="px-2 py-2 border-2 border-gray-400 rounded"
               onChange={(e) => setDisciplinaSelecionada(e.target.value)}
               value={disciplinaSelecionada}
             >
@@ -129,7 +134,7 @@ export function AtribuirDisciplinasProfessor() {
             <table align="center" className="text-center">
               <thead>
                 <tr>
-                  <th className="text-xl mb-3 border-b-2">Disciplinas do Professor:</th>
+                  <th className="mb-3 text-xl border-b-2">Disciplinas do Professor:</th>
                 </tr>
               </thead>
               <tbody className="text-base">
@@ -144,4 +149,4 @@ export function AtribuirDisciplinasProfessor() {
       </div>
     </Page>
   );
-}
+} 

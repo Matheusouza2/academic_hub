@@ -1,8 +1,26 @@
 import logo from "/src/assets/logo.svg";
 import login from "/src/assets/imagen-login.svg";
+
 import autenticarUser from "../services/autenticarUser";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+
+async function autenticarUser(cpf, password) {
+  const response = await fetch('http://localhost:8000/api/v1/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ cpf, password }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to authenticate');
+  }
+
+  return response.json();
+}
 
 export function Login() { 
   const [cpf, setCpf] = useState('');
@@ -33,7 +51,7 @@ export function Login() {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <section className="flex items-center justify-center h-screen w-screen">
@@ -41,7 +59,7 @@ export function Login() {
           <div className="bg-blue-400 sm:block hidden w-1/2">
             <img src={login} alt="imagem login" />
           </div>
-          <div className="sm:w-1/2 flex flex-col items-center justify-center space-y-2">
+          <div className="flex flex-col items-center justify-center space-y-2 sm:w-1/2">
             <header>
               <img src={logo} alt="logo" />
             </header>

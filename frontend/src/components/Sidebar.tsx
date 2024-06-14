@@ -1,6 +1,6 @@
+import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 import { AppIcons } from "../assets/exports";
-import { useMediaQuery } from "react-responsive";
 
 type SidebarProps = {
   type?: "student" | "admin" | "teacher";
