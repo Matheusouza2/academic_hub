@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Page } from "./Page";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { api } from "../services/api";
 
 export function ConsultaNotas() {
 
@@ -23,17 +24,10 @@ export function ConsultaNotas() {
   const url = `/v1/notas/show/${request}`;
 
   useEffect(() => {
-
-    const listar = async () => {
-
-      const response = await axios.get(url);
-      setDisciplines(response.data);
-
-    };
-
-    listar();
+    api.get(url)
+      .then(response => setDisciplines(response?.data))
    
-  }, []);
+  }, [url]);
 
  
   return (
@@ -41,7 +35,7 @@ export function ConsultaNotas() {
     <div className="flex flex-col h-[90%] gap-6">
       <h1 className="text-4xl font-bold roboto">Notas</h1>
       <div className="flex flex-col w-full gap-6 p-6 bg-white rounded-md shadow-2xl">
-        {disciplines.map((discipline, index) => (
+        {disciplines?.map((discipline, index) => (
           <div key={index} className="rounded-lg overflow-hidden shadow-lg">
             <div
               className="bg-blue-500 text-white text-lg font-bold p-4 cursor-pointer flex justify-between items-center"

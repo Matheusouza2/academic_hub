@@ -1,18 +1,18 @@
+import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 import { AppIcons } from "../assets/exports";
-import { useMediaQuery } from "react-responsive";
 
 type SidebarProps = {
   type?: "student" | "admin" | "teacher";
 };
 
 const OPTIONS = {
-  0: [
+  'student': [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
     { icon: AppIcons.books, label: "Disciplinas", href: "" },
     { icon: AppIcons.briefcase, label: "Notas", href: "/notas" },
   ],
-  1: [
+  'admin': [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
     {
       icon: AppIcons.books,
@@ -23,7 +23,7 @@ const OPTIONS = {
     { icon: AppIcons.book, label: "Cursos", href: "/cadastro-curso" },
     { icon: AppIcons.chalkboard, label: "Professores", href: "#" },
   ],
-  2: [
+  'teacher': [
     { icon: AppIcons.house, label: "Início", href: "/inicio" },
     {
       icon: AppIcons.books,
@@ -38,30 +38,10 @@ const OPTIONS = {
 export const Sidebar = ({ type = "teacher" }: SidebarProps) => {
   const { pathname } = useLocation();
   const isMidScreen = useMediaQuery({ query: "(min-width: 1024px)" });
-  let valueType: any;
-
-  const verificType = (type) => {
-    if (type === "studant")
-      valueType = 0;
-    else if (type === "admin")
-      valueType = 1;
-    else if(type === "teacher")
-      valueType = 2;
-  }
-
-  verificType(type);
-
-  const store = (key, value) =>{
-    localStorage.setItem(key, value);
-  }
-
-  store('Type', valueType);
-
-  const type_user = localStorage.getItem('Type');
 
   return (
     <div className="invisible md:visible bg-gradient-to-b from-blue-400 to-blue-700 h-full rounded-2xl w-0 md:w-[110px] lg:w-[195px] xl:w-[225px] flex flex-col items-center pt-8 px-2 lg:px-3 gap-7 lg:gap-9 mr-0 md:mr-8 transition-all duration-500 ease-in-out">
-      <div className=" p-3 lg:p-5 bg-blue-700 rounded-2xl">
+      <div className="p-3 bg-blue-700 lg:p-5 rounded-2xl">
         <img
           src={AppIcons.logo}
           alt="Academic Hub logo"
@@ -70,7 +50,7 @@ export const Sidebar = ({ type = "teacher" }: SidebarProps) => {
       </div>
 
       <div className="flex flex-col w-full gap-9 lg:gap-8 pl-[22px] lg:pl-[12px] xl:pl-6">
-        {OPTIONS[type_user].map((option) => (
+        {OPTIONS[type].map((option) => (
           <Link to={option.href}>
             <div
               data-toggle="tooltip"

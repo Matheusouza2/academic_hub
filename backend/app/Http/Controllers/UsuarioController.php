@@ -39,7 +39,7 @@ class UsuarioController extends Controller
             'sexo' => 'required|string|size:1',
             'tipo_usuario' => 'required|numeric'
         ]);
-        
+
         // recebe a validade e da o create
         Usuario::create($validated);
         return response()->json(["message" => "usuario cadastrado"], 200);
@@ -131,34 +131,41 @@ class UsuarioController extends Controller
         }
     }
     //Função para validar Login
-public function validateLogin(Request $request){
-    $request->validate([
-        'cpf' => ['required'],
-        'senha' => ['required'],
-    ]);
-    $usuario = Usuario::where('cpf', $request->cpf)->first(); //Buscar usuario pelo cpf digitado pelo usuário
+    public function validateLogin(Request $request)
+    {
+        // Valida os campos de entrada
+        $request->validate([
+            'cpf' => ['required'],
+            'senha' => ['required'],
+        ]);
 
-    if (!$usuario)
-        return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);
+        // Remove todos os caracteres não numéricos do CPF
+        $cpfFormatado = preg_replace('/\D/', '', $request->cpf);
 
-    $credentials = ['cpf' => $request->cpf, 'password' => $request->senha];
+        // Buscar usuário pelo CPF formatado
+        $usuario = Usuario::where('cpf', $cpfFormatado)->first();
 
-//<<<<<<< HEAD
+        // Verifica se o usuário existe
         if (!$usuario)
             return response()->json(['message' => 'Usuário inválido. Tente novamente.'], 400);
-///=======
-    $token = JWTAuth::attempt($credentials);
-   
-    if(!$token) 
-        return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
 
-    return response()->json([
-        'data' => [
-            'token' => $token,
-            'user' => $usuario, // Adicionando as informações do usuário
-            'message' => 'Login realizado com sucesso.'
-        ]
-    ], 200);
-}
+        // Credenciais para autenticação
+        $credentials = ['cpf' => $cpfFormatado, 'password' => $request->senha];
 
+        // Tenta autenticar o usuário e gerar um token JWT
+        $token = JWTAuth::attempt($credentials);
+
+        // Verifica se a autenticação falhou
+        if (!$token)
+            return response()->json(['message' => 'Senha incorreta. Tente novamente.'], 400);
+
+        // Retorna o token e os dados do usuário autenticado
+        return response()->json([
+            'data' => [
+                'token' => $token,
+                'user' => $usuario,
+                'message' => 'Login realizado com sucesso.'
+            ]
+        ], 200);
+    }
 }

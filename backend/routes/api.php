@@ -67,6 +67,7 @@ Route::prefix('v1')->group(function () {
     * Rotas para o controller de Alunos
     */
     Route::prefix('aluno')->group(function () {
+        Route::get('/list', [AlunoController::class, 'index']);
         Route::get('/notas/show/{id}', [NotaController::class, 'showGrades']);
         Route::get('/{id}/disciplinas-disponiveis', [AlunoController::class, 'availableSubjects']);
     });
