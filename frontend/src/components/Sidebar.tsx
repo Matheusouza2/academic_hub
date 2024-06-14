@@ -50,11 +50,7 @@ export const Sidebar = ({ type = "teacher" }: SidebarProps) => {
       </div>
 
       <div className="flex flex-col w-full gap-9 lg:gap-8 pl-[22px] lg:pl-[12px] xl:pl-6">
-<<<<<<< Correção-ListagemDisciplina-
-        {OPTIONS[0].map((option) => (
-=======
         {OPTIONS[type].map((option) => (
->>>>>>> develop
           <Link to={option.href}>
             <div
               data-toggle="tooltip"
