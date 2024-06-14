@@ -41,7 +41,7 @@ export function Login() {
           <div className="bg-blue-400 sm:block hidden w-1/2">
             <img src={login} alt="imagem login" />
           </div>
-          <div className="sm:w-1/2 flex flex-col items-center justify-center space-y-2">
+          <div className="flex flex-col items-center justify-center space-y-2 sm:w-1/2">
             <header>
               <img src={logo} alt="logo" />
             </header>

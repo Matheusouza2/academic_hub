@@ -9,13 +9,13 @@ export function Router() {
       <Route path="/cadastro-curso/:curso_id?" element={<Pages.CadCurso />} />
       <Route path="/revisao-plano-disciplina" element={<Pages.ScreenReviewApproval />} />
       <Route path="/notas" element={<Pages.ConsultaNotas />} />
-      <Route path="/DashboardAluno" element={<Pages.DashboardAluno/>} />
+      <Route path="/dashboard" element={<Pages.DashboardAluno/>} />
       <Route path="/professor/listagem-disciplinas/:professor_id" element={<Pages.ListSubjectsByTeacher/>} />
       <Route path="/professor/listagem-disciplinas/listagem-presenca" element={<Pages.PresencaAlunos/>} />
       <Route path="/registro-de-aula" element={<Pages.ClassRegistration/>} />
-      <Route path="/AtribuirDisciplinasProfessor" element={<Pages.AtribuirDisciplinasProfessor/>} />
+      <Route path="/disciplinas/professor" element={<Pages.AtribuirDisciplinasProfessor/>} />
       <Route path="/notas-professor" element={<Pages.AlteraNotaProfessor/>} />
-      <Route path='/ListCursos' element={<Pages.ListCursos />} />
+      <Route path='/cursos' element={<Pages.ListCursos />} />
       <Route path='/alterar-disciplina' element={<Pages.AlterarDisciplina />} />
       <Route path='/cadastro-plano-aula-professor' element={<Pages.CadastrarPlanoAulaProfessor />} />
       <Route path='/alunos' element={<Pages.Students />} />

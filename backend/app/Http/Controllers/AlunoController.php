@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
+    public function index()
+    {
+        // $alunos = Aluno::all();
+        $alunos = Aluno::with('usuario')->get();
+        return response()->json($alunos);
+    }
+
     public function store(Request $request)
     {
         dd($request->aluno);
