@@ -87,6 +87,7 @@ Route::prefix('v1')->group(function () {
         Route::get('lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorCurso']);
         Route::get('professor/lista/{id}', [DisciplinaController::class, 'listarDiciplinaPorProfessor']);
         Route::put('alteracao/{id}', [DisciplinaController::class, 'alteraçãoDisciplina']);
+        Route::get('notasInfo', [NotaController::class, 'listStudentsGradesDiscipline']);
     });
 
     /**
