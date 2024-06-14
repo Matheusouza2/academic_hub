@@ -97,7 +97,7 @@ Route::prefix('v1')->group(function () {
      Route::prefix('plano_de_aulas')->group(function (){
         Route::post('enviar', [PlanoDeAulaController::class, 'submit']);
         Route::patch('aprovar', [PlanoDeAulaController::class, 'approve']);
-        Route::patch('devolver', [PlanoDeAulaController::class, 'giveBack']);
+        Route::post('devolver', [PlanoDeAulaController::class, 'giveBack']);
      });
 
     /**
