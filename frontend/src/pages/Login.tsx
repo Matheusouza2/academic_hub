@@ -19,7 +19,7 @@ export function Login() {
       if (result.id != null) {
         setMessage(result.message);   
         localStorage.setItem('user', JSON.stringify(result.data.user));
-        navigate('/DashboardAluno');
+        navigate('/dashboard');
       }
     } catch(error){
       setMessage('Ocorreu um erro durante a autenticação.');
@@ -28,12 +28,12 @@ export function Login() {
   
   return (
     <>
-      <section className="flex items-center justify-center h-screen w-screen">
-        <div className="flex items-center justify-center overflow-hidden rounded-3xl h-1/2 w-1/2 shadow-2xl">
-          <div className="bg-blue-400 sm:block hidden w-1/2">
+      <section className="flex items-center justify-center w-screen h-screen">
+        <div className="flex items-center justify-center w-1/2 overflow-hidden shadow-2xl rounded-3xl h-1/2">
+          <div className="hidden w-1/2 bg-blue-400 sm:block">
             <img src={login} alt="imagem login" />
           </div>
-          <div className="sm:w-1/2 flex flex-col items-center justify-center space-y-2">
+          <div className="flex flex-col items-center justify-center space-y-2 sm:w-1/2">
             <header>
               <img src={logo} alt="logo" />
             </header>
@@ -47,7 +47,7 @@ export function Login() {
                 <input type="checkbox" id="check" className="bg-gray-500" />
                 <label htmlFor="check">Manter conectado?</label>
               </span>
-              <button className="bg-blue-400 w-full px-4 py-2 text-white ">Login</button>
+              <button className="w-full px-4 py-2 text-white bg-blue-400 ">Login</button>
             </form>
             {message && <p className={`text-[12px] ${message === 'Login realizado com sucesso.' ? 'text-green-500' : 'text-red-500'}`}>{message}</p>}
             <p className="text-[10px] text-[#7575D8] "><a href="">Esqueci minha senha?</a></p>
