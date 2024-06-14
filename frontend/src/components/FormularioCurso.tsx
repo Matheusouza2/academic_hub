@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AppIcons } from "../assets/exports";
 import { api } from "../services/api";
 
 type TipoParametro = {
   curso_id: number | null;
+  curso?: any;
 };
 
-export function FormularioCurso({ curso_id }: TipoParametro) {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+export function FormularioCurso({ curso_id, curso }: TipoParametro) {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      nome: curso?.nome,
+      carga_horaria: curso?.carga_horaria,
+      coordenador_id: curso?.coordenador_id,
+      sigla: curso?.sigla,
+    },
+  });
+
   const [formErrors, setFormErrors] = useState({
-    name: false,
+    nome: false,
     carga_horaria: false,
-    coordenador: false,
+    coordenador_id: false,
     sigla: false
   });
   
@@ -48,9 +57,9 @@ export function FormularioCurso({ curso_id }: TipoParametro) {
 
   const validate = (data: any) => {
     const newErrors = {
-      name: !data.name,
+      nome: !data.nome,
       carga_horaria: !data.carga_horaria,
-      coordenador: !data.coordenador,
+      coordenador_id: !data.coordenador_id,
       sigla: !data.sigla
     };
     setFormErrors(newErrors);
@@ -80,8 +89,8 @@ export function FormularioCurso({ curso_id }: TipoParametro) {
         <div className="flex gap-8">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-[#000000] mx-1 my-2">Nome</label>
-            <input {...register('name', { required: true })} type="text" style={{ border: `2px solid ${formErrors.name ? color_error : cinza}` }} className="w-full h-[47px] bg-[#f0f0f0] rounded-md px-2" id="name" placeholder="Nome do curso" />
-            {formErrors.name && <span className="text-[#F50047] px-2 pt-2 text-[12px]">*Esse campo é obrigatório</span>}
+            <input {...register('nome', { required: true })} type="text" style={{ border: `2px solid ${formErrors.nome ? color_error : cinza}` }} className="w-full h-[47px] bg-[#f0f0f0] rounded-md px-2" id="name" placeholder="Nome do curso" />
+            {formErrors.nome && <span className="text-[#F50047] px-2 pt-2 text-[12px]">*Esse campo é obrigatório</span>}
           </div>
           <div className="flex flex-col flex-1 max-w-[264px]">
             <label htmlFor="carga_horaria" className="text-[#000000] mx-1 my-2">Carga Horária</label>
@@ -90,7 +99,7 @@ export function FormularioCurso({ curso_id }: TipoParametro) {
           </div>
           <div className="flex flex-col flex-1 max-w-[264px]">
             <label htmlFor="coordenador" className="text-[#000000] mx-1 my-2">Coordenador</label>
-            <select {...register('coordenador', { required: true })} style={{ border: `2px solid ${formErrors.coordenador ? color_error : cinza}` }} className={`w-full h-[47px] bg-[#f0f0f0] rounded-md px-2`} id="coordenador">
+            <select {...register('coordenador_id', { required: true })} style={{ border: `2px solid ${formErrors.coordenador_id ? color_error : cinza}` }} className={`w-full h-[47px] bg-[#f0f0f0] rounded-md px-2`} id="coordenador">
               <option value="">Selecione</option>
               {coordenadores.map((coordenador) => (
                 <option key={coordenador.id} value={coordenador.id}>
@@ -98,7 +107,7 @@ export function FormularioCurso({ curso_id }: TipoParametro) {
                 </option>
               ))}
             </select>
-            {formErrors.coordenador && <span className="text-[#F50047] px-2 pt-2 text-[12px]">*Esse campo é obrigatório</span>}
+            {formErrors.coordenador_id && <span className="text-[#F50047] px-2 pt-2 text-[12px]">*Esse campo é obrigatório</span>}
           </div>
         </div>
 

@@ -11,7 +11,8 @@ class CursosController extends Controller
 
     public function index()
     {
-        //
+        $cursos = Curso::paginate(20);
+        return response()->json($cursos);
     }
 
     public function create()
@@ -43,10 +44,19 @@ class CursosController extends Controller
     }
 
      // funcao para listar os cursos
-    public function show()
+    public function show(Request $request, $id)
     {
-        $cursos = Curso::paginate(20);
-        return response()->json($cursos);
+        try {
+            $curso = Curso::find($id);
+
+            if (!$curso) {
+                return response()->json(['message' => 'Curso não encontrado.'], 404);
+            }
+
+            return response()->json(['curso' => $curso], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao procurar curso.', 'error' => $e->getMessage()], 500);
+        }
     }
 
 
