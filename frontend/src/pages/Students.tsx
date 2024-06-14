@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Student } from "../components";
+import { useEffect, useState } from "react";
+import { Student, StudentType,  } from "../components";
 import { Page } from "./Page";
 import { MdFilterAlt } from "react-icons/md";
 import { Modal } from 'react-responsive-modal';
 import { useForm } from "react-hook-form";
+import { api } from "../services/api";
 
 type CreateStudentModalProps = {
   modalIsOpen: boolean
@@ -43,6 +44,18 @@ function CreateStudent({ modalIsOpen, onClose }: CreateStudentModalProps) {
 
 export function Students() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [students, setStudents] = useState([] as StudentType[])
+
+  useEffect(() => {
+    api.get('v1/aluno/list')
+      .then(response => setStudents(response.data.map(({ usuario }) => {
+        return {
+          id: usuario.id,
+          nome: usuario.nome,
+          cpf: usuario.cpf,
+        }
+      })))
+  }, [])
 
   const onOpenModal = () => setModalIsOpen(true);
   const onCloseModal = () => setModalIsOpen(false);
@@ -65,15 +78,7 @@ export function Students() {
 
         <section className="w-full p-6 overflow-auto bg-white rounded-md shadow-2xl ">
           <div className="flex flex-col max-h-full gap-4">
-            <Student />
-            <Student />
-            <Student />
-            <Student />
-            <Student />
-            <Student />
-            <Student />
-            <Student />
-            <Student />
+            {students.map(student => <Student student={student} />)}
           </div>
         </section>
       </div>

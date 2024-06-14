@@ -13,6 +13,16 @@ type StudentDetailsModalProps = {
   }
 }
 
+export type StudentType = {
+  nome: string
+  cpf: string
+  id: number
+}
+
+type StudentProps = {
+  student: StudentType
+}
+
 function StudentDetailsModal({ modalIsOpen, onClose, data }: StudentDetailsModalProps) {
   return (
     <Modal open={modalIsOpen} onClose={onClose} center>
@@ -60,15 +70,15 @@ function StudentDetailsModal({ modalIsOpen, onClose, data }: StudentDetailsModal
   )
 }
 
-export function Student() {
+export function Student({ student }: StudentProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onOpenModal = () => setModalIsOpen(true);
   const onCloseModal = () => setModalIsOpen(false);
 
   const data = {
-    nome: 'Marcos Rafael',
-    cpf: '000.000.000-00',
+    nome: student.nome,
+    cpf: student.cpf,
     turma: '3º período'
   }
 
