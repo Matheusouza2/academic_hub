@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Student, StudentType,  } from "../components";
+import { Student, StudentType } from "../components";
 import { Page } from "./Page";
 import { MdFilterAlt } from "react-icons/md";
 import { Modal } from 'react-responsive-modal';
