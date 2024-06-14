@@ -160,6 +160,5 @@ public function validateLogin(Request $request){
         ]
     ], 200);
 }
-///>>>>>>> 0c40d5e3124a6b4ddee55398380f7f2b538f1c2b
 
 }
