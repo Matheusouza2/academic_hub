@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nota;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use App\Models\Disciplina;
 use Psy\Readline\Hoa\Console;
 
 class NotaController extends Controller
@@ -116,4 +117,59 @@ class NotaController extends Controller
 
         return $returnGrades;
     }
+
+    public function listStudentsGradesDiscipline(Request $request){
+        $request->validate(['disciplina_id' => 'required']);
+
+        // Verifica se a disciplina existe e busca o nome do professor
+        $disciplina = Disciplina::with('professor:nome')->find($request->disciplina_id);
+        if (!$disciplina) {
+            return response()->json(['error' => 'Disciplina não encontrada'], 404);
+        }
+
+        // Busca os alunos matriculados na disciplina especificada e suas notas
+        $notas = Nota::with('aluno:id,nome')
+            ->where('disciplina_id', $request->disciplina_id)
+            ->get();
+
+        // Verifica se alguma nota foi encontrada
+        if ($notas->isEmpty()) {
+            return response()->json(['message' => 'Nenhum aluno matriculado ou nota encontrada para a disciplina especificada'], 404);
+        }
+
+        // Formata as notas
+        $notasFormatadas = [];
+        foreach ($notas as $nota) {
+            $nota_1 = $nota->nota_1 ?? null;
+            $nota_2 = $nota->nota_2 ?? null;
+            $exfn = $nota->exfn ?? null;
+            $media = ($nota_1 !== null && $nota_2 !== null) ? ($nota_1 + $nota_2) / 2 : null;
+            $mfin = ($media !== null && $exfn !== null) ? ($media + $exfn) / 2 : null;
+
+            $notasFormatadas[] = [
+                'aluno_id' => $nota->aluno->id,
+                'aluno_nome' => $nota->aluno->nome,
+                'nota_1' => $nota_1,
+                'nota_2' => $nota_2,
+                'media' => $media,
+                'exfn' => $exfn,
+                'mfin' => $mfin,
+                'sit' => $nota->sit ?? 'Não definida',
+                'faltas' => $nota->faltas ?? 'Não definida',
+            ];
+        }
+
+        // Estrutura da resposta final
+        $response = [
+            'disciplina_id' => $disciplina->id,
+            'disciplina_nome' => $disciplina->nome,
+            'professor_nome' => $disciplina->professor->nome,
+            'quantidade_avaliacoes' => 2,
+            'notas' => $notasFormatadas,
+        ];
+
+        // Retorna a resposta final
+        return response()->json($response);
+    }
+
 }
