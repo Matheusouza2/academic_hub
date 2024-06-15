@@ -34,7 +34,7 @@ class DisciplinaController extends Controller
     public function store(Request $request)
     {
 
-        //O método validate é chamado para validar os dados fornecidos, ou seja, se eles atendem aos criterios pre-estabelecidos
+        // Verificando se os dados fornecidos atendem aos criterios pré-estabelecidos
         $request->validate([
             'nome' => 'required|unique:disciplinas', //valida se o campo nome é único e obrigatório
             'codigo' => 'required|unique:disciplinas', //valida se o campo codigo é único e obrigatório
@@ -42,10 +42,11 @@ class DisciplinaController extends Controller
             'ch_teorica' => 'required',
             'ch_pratica' => 'required',
             'sigla' => 'required',
-            'ementa' => 'required'
+            'ementa' => 'required',
+            'periodo_letivo_id' => 'required'
         ]);
 
-        //Se a validação for bem-sucedida, uma nova disciplina será adicionada
+        // Se a validação for bem-sucedida, a disciplina será adicionada ao bd
         $disciplina = Disciplina::create([
             'nome' => $request->nome,
             'codigo' => $request->codigo,
@@ -54,7 +55,8 @@ class DisciplinaController extends Controller
             'ch_pratica' => $request->ch_pratica,
             'sigla' => $request->sigla,
             'ementa' => $request->ementa,
-            'ativa' => true // cada disiciplina criada, por padrão, é ativa
+            'periodo_letivo_id' => $request->periodo_letivo_id,
+            'ativa' => true // Cada disciplina criada, por padrão, é ativa
         ]);
 
         // Retorna uma resposta JSON com os dados da nova disciplina criada
