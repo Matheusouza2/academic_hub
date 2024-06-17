@@ -7,7 +7,7 @@ export function CreateSubjects() {
   const { register, handleSubmit } = useForm()
 
   const onSubmit = (data: any) => {
-    api.post(`/v1/disciplina/store`, data)
+    api.post(`/v1/disciplinas/store`, data)
   }
 
   return (
@@ -37,6 +37,11 @@ export function CreateSubjects() {
             </div>
 
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
+              <label htmlFor="periodo_letivo" className="text-gray-900">Período Letivo</label>
+              <input {...register('periodo_letivo_id')} type="number" min={1} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="periodo_letivo" placeholder="Período letivo de oferta" />
+            </div>
+
+            <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
               <label htmlFor="ch_teory" className="text-gray-900">Carga horária teórica</label>
               <input {...register('ch_teorica')} type="number" min={0} className="w-full h-[47px] bg-gray-500 rounded-md px-2" id="ch_teory" placeholder="Carga horária teórica da disciplina" />
             </div>
@@ -49,7 +54,8 @@ export function CreateSubjects() {
             <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
               <label htmlFor="curso_id" className="text-gray-900">Curso</label>
               <select {...register('curso_id')} id="curso_id" name="curso_id" className="w-full h-[47px] bg-gray-500 rounded-md px-2 text-gray-900">
-                <option value="1" selected>--- Cursos ---</option>
+                <option value="1" selected>Engenharia da Computação</option>
+                <option value="2" selected>Ciência da Computação</option>
               </select>
             </div>
 
